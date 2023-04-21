@@ -5,7 +5,7 @@ const bcrypt = require("bcrypt");
 
 const userSchema = new Schema(
   {
-    name: { type: String, required: true },
+    username: { type: String, required: true },
     email: {
       type: String,
       unique: true,
@@ -18,6 +18,16 @@ const userSchema = new Schema(
       trim: true,
       minLength: 3,
       required: true,
+    },
+
+    profilePic: {
+      type: String,
+      trim: true,
+      default: "",
+    },
+    communityPref: {
+      type: Boolean,
+      default: true,
     },
   },
   {

@@ -4,6 +4,8 @@ import * as userService from "../../utilities/users-services"
 import "../components.css";
 import hive from './hiveIcon.png'
 
+import sendRequest from "../../utilities/send-request";
+
 
 
 const NavBar = ({ user, setUser}) => {
@@ -16,6 +18,11 @@ const NavBar = ({ user, setUser}) => {
   // DELETE LATER, ONLY FOR TESTING
   function handleSignIn (){
     setUser({});
+  }
+
+  async function categoryAddTest (){
+      const data = await sendRequest("/api/categories/create","POST", {name: "TESTING"})
+      console.log(data)
   }
 
   return (
@@ -44,7 +51,7 @@ const NavBar = ({ user, setUser}) => {
           </>
           
           : <Link to = "/signin"><li onClick={handleSignIn}>Login</li></Link>}
-          <li id = "navElement">CREATE CATEGORY TEST!</li>
+          <li id = "navElement" onClick={categoryAddTest}>CREATE CATEGORY TEST!</li>
         </ul>
         
       </nav>

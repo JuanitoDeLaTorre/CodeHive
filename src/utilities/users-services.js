@@ -5,8 +5,8 @@ export async function signUp(userData) {
   localStorage.setItem("token", token);
   return getUser();
 }
-export async function login(credentilas) {
-  const token = await usersApi.login(credentilas);
+export async function login(credentials) {
+  const token = await usersApi.login(credentials);
   localStorage.setItem("token", token);
   return getUser();
 }
@@ -14,6 +14,7 @@ export async function login(credentilas) {
 export function getToken() {
   // getItem returns null if there's no string
   const token = localStorage.getItem("token");
+  console.log(token);
   if (!token) return null;
   // Obtain the payload of the token
   const payload = JSON.parse(atob(token.split(".")[1]));
@@ -26,8 +27,6 @@ export function getToken() {
   return token;
 }
 
-
-
 export function getUser() {
   const token = getToken();
   // If there's a token, return the user in the payload, otherwise return null
@@ -38,7 +37,7 @@ export function logout() {
   localStorage.removeItem("token");
 }
 
-export async function checkToken(){
-    const dateStr = await usersApi.checkToken();
-    return new Date(dateStr)
+export async function checkToken() {
+  const dateStr = await usersApi.checkToken();
+  return new Date(dateStr);
 }

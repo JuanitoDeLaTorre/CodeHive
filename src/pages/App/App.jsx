@@ -32,6 +32,7 @@ function App() {
             <Route path="/signin" element={
             <>
               <LoginPage setUser={setUser}/>
+              <AuthPage setUser = {setUser}/>
             </>}></Route>
             {/* HOME ROUTE */}
             <Route path="/" element={

@@ -6,12 +6,13 @@ import NewOrderPage from "../NewOrderPage/NewOrderPage";
 import AuthPage from "../AuthPage/AuthPage";
 import OrderHistoryPage from "../OrderHistoryPage/OrderHistoryPage";
 import NavBar from "../../components/NavBar/NavBar";
+import LoginPage from "../LoginPage/LoginPage";
 
 function App() {
   const [user, setUser] = useState(getUser());
   return (
     <main className="App">
-      <h1>App</h1>
+      {/* <h1>Apps</h1>
       {user ? (
         <>
           <NavBar user={user} setUser={setUser}/>
@@ -22,7 +23,32 @@ function App() {
         </>
       ) : (
         <AuthPage setUser={setUser}/>
-      )}
+      )} */}
+      <>
+      {/* <NavBar user={user} setUser={setUser}/> */}
+
+      <Routes>
+            {/* SIGN IN ROUTE */}
+            <Route path="/signin" element={
+            <>
+              <LoginPage setUser={setUser}/>
+            </>}></Route>
+            {/* HOME ROUTE */}
+            <Route path="/" element={
+            <>
+              <NavBar user={user} setUser={setUser}/>
+            </>} 
+            />
+            {/* COMMUNITY ROUTE */}
+            <Route path="/" element={
+            <>
+              <NavBar user={user} setUser={setUser}/>
+            </>} 
+            />
+            {/* <Route path="/orders/" element={<OrderHistoryPage />} /> */}
+      </Routes>
+      </>
+
     </main>
   );
 }

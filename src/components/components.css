@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,600;0,800;1,100;1,300;1,400&family=Pathway+Gothic+One&display=swap');
+:root {
+    --white: white;
+    --accentOrange: #F8CB00;
+    --gunmetal: #2D3142;
+    --headerDark: #04121F;
+    --paynes: #4F5D75;
+    --silver: #BFC0C0;
+  }
+
+  header {
+    margin: 0;
+    padding: 10px 10% 10px 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--headerDark);
+    color: var(--white)
+  }
+
+  header ul {
+    display: flex;
+    list-style-type: none;
+    gap: 30px;
+  }
+
+  #searchBar {
+    font-family: inherit;
+    width: 20%;
+    height: 30px;
+    padding: 10px;
+    border: solid var(--paynes) 1px;
+    background-color: var(--white);
+    border-radius: 5px;
+    transition: all 300ms ease-in-out;
+    outline: none;
+
+  }
+
+  #searchBar:focus {
+    border: solid var(--accentOrange) 2px;
+    box-shadow: 0px 0px 10px var(--accentOrange);
+  }
+
+  #hiveLogo {
+    height: 50px;
+    width: auto;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }

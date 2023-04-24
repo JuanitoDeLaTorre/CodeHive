@@ -5,7 +5,7 @@
   --gunmetal: #2D3142;
   --headerDark: #04121F;
   --paynes: #4F5D75;
-  --silver: #BFC0C0;
+  --silver: rgb(191, 192, 192);
 }
 
 *, *:before, *:after {
@@ -22,6 +22,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--gunmetal);
-  /* padding: 2vmin; */
+  background-image: radial-gradient(circle at 1px 1px, rgba(191, 192, 192, 0.4), 1px, transparent 0);
+  background-size: 40px 40px;
   height: 100vh;
 }

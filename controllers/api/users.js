@@ -10,16 +10,26 @@ async function checkToken(req, res) {
 async function create(req, res) {
   try {
     const user = await User.create(req.body);
+
+    console.log("THIS IS THE USERRRRRR", user);
+
     const token = createJWT(user);
+
+    console.log(token);
+
     res.json(token);
   } catch (err) {
     res.status(400).json(err);
+    console.log(err);
   }
 }
 
 async function login(req, res) {
   try {
     const user = await User.findOne({ email: req.body.email });
+
+    console.log(user);
+
     if (!user) throw new Error("NO User Found");
     const matchedPassword = bcrypt.compare(req.body.password, user.password);
     if (!matchedPassword) throw new Error("Password incorrect");

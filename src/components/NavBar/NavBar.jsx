@@ -10,7 +10,7 @@ const NavBar = ({ user, setUser}) => {
     <nav>
       <Link to="/orders">Order History</Link> &nbsp; | &nbsp;
       <Link to="/orders/new">New Order</Link>&nbsp; | &nbsp;
-      <span>UserName: {user && user.name}</span>
+      <span>UserName: {user && user.username}</span>
       <Link to="" onClick={handleLogout}>
         Log Out{" "}
       </Link>

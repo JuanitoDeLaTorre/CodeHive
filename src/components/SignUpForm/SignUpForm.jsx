@@ -3,7 +3,7 @@ import { signUp } from "../../utilities/users-services";
 
 class SignUpForm extends Component {
   state = {
-    name: "",
+    username: "",
     email: "",
     password: "",
     confirm: "",
@@ -40,8 +40,8 @@ class SignUpForm extends Component {
             <label>Name</label>
             <input
               type="text"
-              name="name"
-              value={this.state.name}
+              name="username"
+              value={this.state.username}
               onChange={this.handleChange}
               required
             />

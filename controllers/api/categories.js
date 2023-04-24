@@ -1,10 +1,12 @@
 const Category = require("../../models/category")
 
 
-
-async function create(req,res){
-    const category = await Category.create(req.body)
-}
+// create a new category
+async function create(req, res) {
+    const category = new Category(req.body);
+    const savedCategory = await category.save();
+    res.json(savedCategory);
+  }
 
 
 

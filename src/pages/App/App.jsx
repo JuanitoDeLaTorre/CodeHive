@@ -11,7 +11,7 @@ function App() {
   const [user, setUser] = useState(getUser());
   return (
     <main className="App">
-      <h1>App</h1>
+      {/* <h1>Apps</h1>
       {user ? (
         <>
           <NavBar user={user} setUser={setUser}/>
@@ -22,7 +22,8 @@ function App() {
         </>
       ) : (
         <AuthPage setUser={setUser}/>
-      )}
+      )} */}
+      <NavBar user={user} setUser={setUser}/>
     </main>
   );
 }

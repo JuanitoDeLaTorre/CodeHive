@@ -7,14 +7,21 @@ import hive from './hiveIcon.png'
 
 
 const NavBar = ({ user, setUser}) => {
+
   function handleLogout (){
     userService.logout()
     setUser(null);
   }
+
+  // DELETE LATER, ONLY FOR TESTING
+  function handleSignIn (){
+    setUser({});
+  }
+
   return (
     <>
     <header>
-      <Link to = "">
+      <Link to = "/">
         <div id="logoAndTitle" style = {{display: "flex", justifyContent: "center", alignItems: "center", margin: "0", gap: "8px"}}>
           <div style = {{display: "flex", justifyContent: "center", alignItems: "center", margin: "0", gap: "8px"}}>
             <span style = {{fontSize: "2em", color: "var(--accentOrange"}}>&#60;</span>
@@ -33,10 +40,11 @@ const NavBar = ({ user, setUser}) => {
           {user ? 
           <>
             <Link to = ""><li id = "navElement">Your Snippets</li></Link>
-            <Link to = ""><li id = "navElement" onClick={handleLogout}>Logout</li></Link> 
+            <Link to = "/"><li id = "navElement" onClick={handleLogout}>Logout</li></Link> 
           </>
           
-          : <Link to = ""><li>Login</li></Link>}
+          : <Link to = "/signin"><li onClick={handleSignIn}>Login</li></Link>}
+          <li id = "navElement">CREATE CATEGORY TEST!</li>
         </ul>
         
       </nav>

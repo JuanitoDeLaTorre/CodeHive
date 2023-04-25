@@ -66,9 +66,9 @@ export default function LoginPage({setUser}) {
                         onChange={handleChange}
                         required
                     />
-                    <Link to = "/"><button id = "loginButton" type="submit" style = {{width:"100%"}}>LOG IN</button></Link>
+                    <Link to = "/"><button id = "loginButton" type="submit" style = {{width:"100%"}} onClick = {handleSubmit}>LOG IN</button></Link>
                 </form>
-                <h5>Not a user yet? <Link to = "/signup" style = {{color: "var(--accentOrange)"}}>Sign up here!</Link></h5>
+                <h5 style = {{fontWeight: "400"}}>Not a user yet? <Link to = "/signup" style = {{color: "var(--accentOrange)"}}>Join the hive!</Link></h5>
                 <Link to = "/" ><button id = "loginButton" style = {{ width: "100%"}}>Back to home.</button></Link>
             </div>
         </div>

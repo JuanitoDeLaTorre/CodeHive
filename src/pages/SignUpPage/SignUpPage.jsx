@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './SignUpPage.css'
-import hive from "../../components/NavBar/hiveIcon.png"
+import hive from "../../resources/hiveIcon.png"
 import * as usersService from "../../utilities/users-services";
 
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './LoginPage.css'
-import hive from "../../components/NavBar/hiveIcon.png"
+import hive from "../../resources/hiveIcon.png"
 import LoginForm from '../../components/LoginForm/LoginForm'
 import * as usersService from "../../utilities/users-services";
 
@@ -24,6 +24,7 @@ export default function LoginPage({setUser}) {
       async function handleSubmit(evt) {
         // Prevent form from being submitted to the server
         evt.preventDefault();
+        // evt.stopPropagation();
         try {
           // The promise returned by the signUp service method
           // will resolve to the user object included in the
@@ -68,6 +69,7 @@ export default function LoginPage({setUser}) {
                     />
                     <Link to = "/"><button id = "loginButton" type="submit" style = {{width:"100%"}} onClick = {handleSubmit}>LOG IN</button></Link>
                 </form>
+                <p>{error}</p>
                 <h5 style = {{fontWeight: "400"}}>Not a user yet? <Link to = "/signup" style = {{color: "var(--accentOrange)"}}>Join the hive!</Link></h5>
                 <Link to = "/" ><button id = "loginButton" style = {{ width: "100%"}}>Back to home.</button></Link>
             </div>

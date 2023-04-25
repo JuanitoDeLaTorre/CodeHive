@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import * as userService from "../../utilities/users-services"
 import "../components.css";
-import hive from './hiveIcon.png'
+import hive from '../../resources/hiveIcon.png'
 
 import sendRequest from "../../utilities/send-request";
 
@@ -37,12 +37,15 @@ const NavBar = ({ user, setUser}) => {
       <input id = "searchBar" placeholder = "Search for snippets, categories..." type="text" />
       <nav>
         <ul>
-          <Link to = ""><li id = "navElement">Community</li></Link>
+          <Link to = "/community"><li id = "navElement">Community</li></Link>
           
           {user ? 
           <>
+            <li style = {{color: "var(--accentOrange)"}}>/</li>
             <Link to = ""><li id = "navElement">Your Snippets</li></Link>
+            <li style = {{color: "var(--accentOrange)", marginLeft: "0"}}>/</li>
             <Link to = ""><li id = "navElement">Quick Add +</li></Link>
+            <li style = {{color: "var(--accentOrange)"}}>/</li>
             <Link to = "/"><li id = "navElement" onClick={handleLogout}>Logout, <span style = {{color: "var(--accentOrange)"}}>{user.username}</span></li></Link> 
           </>
           

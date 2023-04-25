@@ -1,0 +1,5 @@
+#communityContainer {
+    display: flex;
+    flex-wrap: wrap;
+    color: var(--gunmetal);
+}

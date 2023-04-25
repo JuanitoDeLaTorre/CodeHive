@@ -4,5 +4,6 @@ const categoriesCtrl = require("../../controllers/api/categories");
 
 router.post("/create", categoriesCtrl.create);
 router.delete("/delete/:id", categoriesCtrl.remove);
+router.get("/fetchCats/:user_id", categoriesCtrl.getAllCatsForUser); 
 
 module.exports = router;

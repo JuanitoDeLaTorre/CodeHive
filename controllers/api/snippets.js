@@ -40,8 +40,19 @@ async function remove(req, res) {
   }
 }
 
+async function getAllSnipsForCats(req, res) {
+  try {
+    const snippets = await Snippet.find({ category: req.params.category_id });
+    res.json(snippets);
+  } catch (err) {
+    res.status(400).json(err);
+    console.log(err);
+  }
+}
+
 module.exports = {
   create,
   update,
   remove,
+   getAllSnipsForCats,
 };

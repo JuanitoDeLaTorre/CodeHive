@@ -11,8 +11,6 @@ async function create(req, res) {
   try {
     const user = await User.create(req.body);
 
-    console.log("THIS IS THE USERRRRRR", user);
-
     const token = createJWT(user);
 
     console.log(token);

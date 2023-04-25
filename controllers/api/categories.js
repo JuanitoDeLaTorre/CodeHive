@@ -6,8 +6,8 @@ const User = require("../../models/user");
 async function create(req, res) {
   try {
     const category = await Category.create({
-      name: "ALLO",
-      description: "THIS IS ME",
+      name: req.body.name,
+      description: req.body.description,
       user: req.user._id,
     });
 

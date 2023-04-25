@@ -1,10 +1,23 @@
 import React, {useState, useEffect} from 'react'
 import { Link, useParams } from 'react-router-dom'
+import './ProfilePage.css'
+import sendRequest from '../../utilities/send-request'
+
 
 export default function Profile() {
 
-  const {name} = useParams();
-  console.log(name)
+  const [allSnips, setAllSnips] = useState([])
+
+  const profileID = useParams().name;
+  console.log(profileID)
+
+  async function getAllSnips() {
+    const allSnipsRes = await sendRequest(`api/snippets/fetchSnipsForUser/${profileID}`)
+  }
+
+  useEffect(() => {
+      
+  })
 
   return (
     <div class = "mainContent">

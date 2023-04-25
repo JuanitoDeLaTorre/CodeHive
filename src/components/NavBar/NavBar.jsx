@@ -42,14 +42,14 @@ const NavBar = ({ user, setUser}) => {
           {user ? 
           <>
             <li style = {{color: "var(--accentOrange)"}}>/</li>
-            <Link to = ""><li id = "navElement">Your Snippets</li></Link>
+            <Link to = "/profile/{user.username}"><li id = "navElement">Your Bins</li></Link>
             <li style = {{color: "var(--accentOrange)", marginLeft: "0"}}>/</li>
             <Link to = ""><li id = "navElement">Quick Add +</li></Link>
             <li style = {{color: "var(--accentOrange)"}}>/</li>
             <Link to = "/"><li id = "navElement" onClick={handleLogout}>Logout, <span style = {{color: "var(--accentOrange)"}}>{user.username}</span></li></Link> 
           </>
           
-          : <Link to = "/signin"><li id = "navElement">Login</li></Link>}
+          : <Link to = "/signin"><li id = "navElement"><button id = "loginButtonNav">Login/Sign Up</button></li></Link>}
           {/* <li id = "navElement" onClick={categoryAddTest}>CAT TEST!</li> */}
         </ul>
         

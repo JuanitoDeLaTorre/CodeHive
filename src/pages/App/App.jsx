@@ -9,6 +9,7 @@ import NavBar from "../../components/NavBar/NavBar";
 import LoginPage from "../LoginPage/LoginPage";
 import SignUpPage from "../SignUpPage/SignUpPage";
 import CommunityPage from "../Community/CommunityPage";
+import ProfilePage from "../ProfilePage/ProfilePage";
 
 
 
@@ -51,6 +52,13 @@ function App() {
               <CommunityPage />
             </>} 
             />
+            {/* PROFILE ROUTE */}
+            <Route path="/profile/:name" element={
+            <>
+              <NavBar user={user} setUser={setUser}/>
+              <CommunityPage />
+            </>} 
+            />  
             {/* <Route path="/orders/" element={<OrderHistoryPage />} /> */}
       </Routes>
       </>

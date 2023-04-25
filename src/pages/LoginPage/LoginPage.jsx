@@ -31,6 +31,10 @@ export default function LoginPage({setUser}) {
           // payload of the JSON Web Token (JWT)
           const user = await usersService.login(credentials);
           setUser(user);
+
+            const back = document.querySelector('.backToHome')
+            back.click()
+
         } catch (err){
             console.log(err)
           setError("Log In Failed - Try Again");
@@ -67,11 +71,12 @@ export default function LoginPage({setUser}) {
                         onChange={handleChange}
                         required
                     />
-                    <Link to = "/"><button id = "loginButton" type="submit" style = {{width:"100%"}} onClick = {handleSubmit}>LOG IN</button></Link>
+                    <Link to = "/" onClick = {handleSubmit}><button id = "loginButton" type="submit" style = {{width:"100%"}}>LOG IN</button></Link>
+                    
                 </form>
                 <p>{error}</p>
                 <h5 style = {{fontWeight: "400"}}>Not a user yet? <Link to = "/signup" style = {{color: "var(--accentOrange)"}}>Join the hive!</Link></h5>
-                <Link to = "/" ><button id = "loginButton" style = {{ width: "100%"}}>Back to home.</button></Link>
+                <Link to = "/" ><button id = "loginButton" class = "backToHome" style = {{ width: "100%"}}>Back to home.</button></Link>
             </div>
         </div>
     </div>

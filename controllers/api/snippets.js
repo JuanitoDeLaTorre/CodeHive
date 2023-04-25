@@ -50,9 +50,29 @@ async function getAllSnipsForCats(req, res) {
   }
 }
 
+async function returnSnipsForUser(req, res) {
+  const categories = await Category.find({ user: req.params.user_id });
+  const result = [];
+
+  for (let i = 0; i < categories.length; i++) {
+    const category = categories[i];
+    const snips = await Snippet.find({ category: category._id });
+    const snipCount = snips.length;
+    result.push({
+      _id: category._id,
+      name: category.name,
+      snipCount: snipCount,
+      snips: snips,
+    });
+  }
+
+  res.json(result);
+}
+
 module.exports = {
   create,
   update,
   remove,
-   getAllSnipsForCats,
+  getAllSnipsForCats,
+  returnSnipsForUser,
 };

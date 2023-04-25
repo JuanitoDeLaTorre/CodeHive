@@ -1,5 +1,5 @@
 const Snippet = require("../models/snippet");
-const Category = require("../models/category");
+const Category = require("../models/category")
 
 async function create(req, res) {
   try {

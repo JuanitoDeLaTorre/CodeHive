@@ -21,7 +21,17 @@ async function create(req, res) {
 async function update(req, res) {
     try {
     const snippet = await Snippet.findByIdAndUpdate(req.params.id, req.body, {new: true});
-    res.status(200).json(snippet);
+    res.json(snippet);
+  } catch (err) {
+    res.status(400).json(err);
+    console.log(err);
+  }
+}
+
+async function remove(req, res) {
+    try {
+    const snippet = await Snippet.findByIdAndRemove(req.params.id);
+    res.json(snippet);
   } catch (err) {
     res.status(400).json(err);
     console.log(err);

@@ -28,7 +28,19 @@ async function remove(req, res) {
   }
 }
 
+
+async function getAllCatsForUser(req, res) {
+  try {
+    const categories = await Category.find({ user: req.params.user_id });
+    res.json(categories);
+  } catch (err) {
+    res.status(400).json(err);
+    console.log(err);
+  }
+}
+
 module.exports = {
   create,
   remove,
+  getAllCatsForUser,
 };

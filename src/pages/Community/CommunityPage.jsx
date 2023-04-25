@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react'
 import './CommunityPage.css'
 import ProfileCard from '../../components/ProfileCard/ProfileCard'
+import sendRequest from '../../utilities/send-request'
 
 export default function CommunityPage() {
 
@@ -9,6 +10,12 @@ export default function CommunityPage() {
     useEffect(() => {
       //get all profiles signed up for community feature  
     },[])
+
+    const fetchAll = () => {
+        //get all profiles signed up for community feature  
+        console.log(sendRequest('/api/users/fetchUsers'))
+        // users.push(sendRequest('/api/users/fetchUsers'))
+    }
 
   return (
     <div className="mainContent">
@@ -20,6 +27,7 @@ export default function CommunityPage() {
             <ProfileCard />
             <ProfileCard />
         </div>
+        <button onClick={fetchAll}>GET ALL USERS</button>
     </div>
   )
 }

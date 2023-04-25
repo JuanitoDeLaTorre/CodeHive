@@ -48,8 +48,15 @@ function createJWT(user) {
   );
 }
 
+async function fetchUsers() {
+  const allUsers = await User.find();
+
+  res.json(allUsers);
+}
+
 module.exports = {
   checkToken,
   login,
   create,
+  fetchUsers,
 };

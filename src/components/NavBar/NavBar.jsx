@@ -15,11 +15,6 @@ const NavBar = ({ user, setUser}) => {
     setUser(null);
   }
 
-  // DELETE LATER, ONLY FOR TESTING
-  function handleSignIn (){
-    setUser({});
-  }
-
   async function categoryAddTest (){
       const data = await sendRequest("/api/categories/create","POST", {name: "TESTING"})
       console.log(data)
@@ -47,11 +42,12 @@ const NavBar = ({ user, setUser}) => {
           {user ? 
           <>
             <Link to = ""><li id = "navElement">Your Snippets</li></Link>
-            <Link to = "/"><li id = "navElement" onClick={handleLogout}>Logout</li></Link> 
+            <Link to = ""><li id = "navElement">Quick Add +</li></Link>
+            <Link to = "/"><li id = "navElement" onClick={handleLogout}>Logout, <span style = {{color: "var(--accentOrange)"}}>{user.username}</span></li></Link> 
           </>
           
-          : <Link to = "/signin"><li onClick={handleSignIn}>Login</li></Link>}
-          <li id = "navElement" onClick={categoryAddTest}>CREATE CATEGORY TEST!</li>
+          : <Link to = "/signin"><li id = "navElement">Login</li></Link>}
+          {/* <li id = "navElement" onClick={categoryAddTest}>CAT TEST!</li> */}
         </ul>
         
       </nav>

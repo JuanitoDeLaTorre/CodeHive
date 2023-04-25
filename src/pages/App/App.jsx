@@ -7,6 +7,9 @@ import AuthPage from "../AuthPage/AuthPage";
 import OrderHistoryPage from "../OrderHistoryPage/OrderHistoryPage";
 import NavBar from "../../components/NavBar/NavBar";
 import LoginPage from "../LoginPage/LoginPage";
+import SignUpPage from "../SignUpPage/SignUpPage";
+
+
 
 function App() {
   const [user, setUser] = useState(getUser());
@@ -29,11 +32,11 @@ function App() {
 
       <Routes>
             {/* SIGN IN ROUTE */}
-            <Route path="/signin" element={
-            <>
-              <LoginPage setUser={setUser}/>
-              <AuthPage setUser = {setUser}/>
-            </>}></Route>
+            <Route path="/signin" element={<LoginPage setUser={setUser}/>}></Route>
+
+            {/* SIGN UP ROUTE */}
+            <Route path="/signup" element={<SignUpPage setUser={setUser}/>}></Route>
+
             {/* HOME ROUTE */}
             <Route path="/" element={
             <>

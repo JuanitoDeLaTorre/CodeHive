@@ -41,7 +41,7 @@ export default function LoginPage({setUser}) {
         <div className="loginBox">
             <div style = {{backgroundColor: 'rgb(53, 53, 53)', width: "40%", overflow: "hidden", position: "relative"}}>
                 <img id = "hiveIconLogin" src={hive} alt="" />
-                <h1 style = {{fontFamily: "Pathway Gothic One", fontSize: "3em", position: "absolute", top: "50%", left: "26%"}}>CODE <span style = {{color: "var(--accentOrange"}}>HIVE</span></h1>
+                <h1 style = {{fontFamily: "Pathway Gothic One", fontSize: "3em", position: "absolute", top: "50%", left: "32%"}}>CODE <span style = {{color: "var(--accentOrange"}}>HIVE</span></h1>
             </div>
             <div style = {{width: "60%", display: "flex", flexDirection: "column", alignItems: "center", paddingTop: "6%"}}>
                 <h1 style = {{fontWeight: "600", marginBottom: "0"}}>Welcome back!</h1>
@@ -66,9 +66,10 @@ export default function LoginPage({setUser}) {
                         onChange={handleChange}
                         required
                     />
-                    <button type="submit">LOG IN</button>
+                    <Link to = "/"><button id = "loginButton" type="submit" style = {{width:"100%"}}>LOG IN</button></Link>
                 </form>
                 <h5>Not a user yet? <Link to = "/signup" style = {{color: "var(--accentOrange)"}}>Sign up here!</Link></h5>
+                <Link to = "/" ><button id = "loginButton" style = {{ width: "100%"}}>Back to home.</button></Link>
             </div>
         </div>
     </div>

@@ -13,8 +13,6 @@ async function create(req, res) {
 
     const token = createJWT(user);
 
-    console.log(token);
-
     res.json(token);
   } catch (err) {
     res.status(400).json(err);
@@ -54,9 +52,20 @@ async function fetchUsers(req, res) {
   res.json(allUsers);
 }
 
+async function fetchOneUser(req, res) {
+  try {
+    const user = await User.findOne({ username: req.params.username });
+    res.json(user);
+  } catch (err) {
+    // console.log(err);
+    console.log("err");
+  }
+}
+
 module.exports = {
   checkToken,
   login,
   create,
   fetchUsers,
+  fetchOneUser,
 };

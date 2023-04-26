@@ -10,8 +10,7 @@ async function create(req, res) {
       description: req.body.description,
       user: req.user._id,
     });
-
-    console.log("This", req.user._id);
+    res.status(201).json(category);
   } catch (err) {
     res.status(400).json(err);
     console.log(err);
@@ -27,7 +26,6 @@ async function remove(req, res) {
     console.log(err);
   }
 }
-
 
 async function getAllCatsForUser(req, res) {
   try {

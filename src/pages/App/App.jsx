@@ -10,6 +10,8 @@ import LoginPage from "../LoginPage/LoginPage";
 import SignUpPage from "../SignUpPage/SignUpPage";
 import CommunityPage from "../Community/CommunityPage";
 import ProfilePage from "../ProfilePage/ProfilePage";
+import NewCatForm from "../NewCatForm/NewCatForm";
+import NewSnippetForm from "../NewSnippetForm/NewSnippetForm";
 
 
 
@@ -58,6 +60,20 @@ function App() {
             <>
               <NavBar user={user} setUser={setUser}/>
               <ProfilePage user={user}/>
+            </>} 
+            />  
+            {/* ADD CATEGORY FORM */}
+            <Route path="/addCatForm" element={
+            <>
+              <NavBar user={user} setUser={setUser}/>
+              <NewCatForm user={user}/>
+            </>} 
+            />  
+            {/* ADD SNIPPET FORM */}
+            <Route path="/addSnippetForm" element={
+            <>
+              <NavBar user={user} setUser={setUser}/>
+              <NewSnippetForm user={user}/>
             </>} 
             />  
       </Routes>

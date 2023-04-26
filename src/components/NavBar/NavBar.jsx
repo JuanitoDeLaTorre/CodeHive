@@ -42,9 +42,9 @@ const NavBar = ({ user, setUser}) => {
           {user ? 
           <>
             <li style = {{color: "var(--accentOrange)"}}>/</li>
-            <Link to = {`/profile/${user._id}`}><li id = "navElement">Your Bins</li></Link>
+            <Link to = {`/profile/${user.username}`}><li id = "navElement">Your Bins</li></Link>
             <li style = {{color: "var(--accentOrange)", marginLeft: "0"}}>/</li>
-            <Link to = ""><li id = "navElement">Quick Add +</li></Link>
+            <Link to = "/addSnippetForm"><li id = "navElement">Quick Add +</li></Link>
             <li style = {{color: "var(--accentOrange)"}}>/</li>
             <Link to = "/"><li id = "navElement" onClick={handleLogout}>Logout, <span style = {{color: "var(--accentOrange)"}}>{user.username}</span></li></Link> 
           </>

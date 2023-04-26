@@ -17,6 +17,18 @@ async function create(req, res) {
   }
 }
 
+async function update(req, res) {
+  try {
+    const category = await Category.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    });
+    res.json(category);
+  } catch (err) {
+    res.status(400).json(err);
+    console.log(err);
+  }
+}
+
 async function remove(req, res) {
   try {
     const category = await Category.findByIdAndRemove(req.params.id);
@@ -41,4 +53,5 @@ module.exports = {
   create,
   remove,
   getAllCatsForUser,
+  update,
 };

@@ -48,7 +48,7 @@ function createJWT(user) {
   );
 }
 
-async function fetchUsers() {
+async function fetchUsers(req, res) {
   const allUsers = await User.find();
 
   res.json(allUsers);

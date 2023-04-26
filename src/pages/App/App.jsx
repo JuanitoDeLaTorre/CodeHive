@@ -9,11 +9,13 @@ import NavBar from "../../components/NavBar/NavBar";
 import LoginPage from "../LoginPage/LoginPage";
 import SignUpPage from "../SignUpPage/SignUpPage";
 import CommunityPage from "../Community/CommunityPage";
+import ProfilePage from "../ProfilePage/ProfilePage";
 
 
 
 function App() {
   const [user, setUser] = useState(getUser());
+  console.log(user)
   return (
     <main className="App">
       {/* <h1>Apps</h1>
@@ -30,7 +32,7 @@ function App() {
       )} */}
       <>
       {/* <NavBar user={user} setUser={setUser}/> */}
-
+      
       <Routes>
             {/* SIGN IN ROUTE */}
             <Route path="/signin" element={<LoginPage setUser={setUser}/>}></Route>
@@ -48,10 +50,16 @@ function App() {
             <Route path="/community" element={
             <>
               <NavBar user={user} setUser={setUser}/>
-              <CommunityPage />
+              <CommunityPage user={user}/>
             </>} 
             />
-            {/* <Route path="/orders/" element={<OrderHistoryPage />} /> */}
+            {/* PROFILE ROUTE */}
+            <Route path="/profile/:name" element={
+            <>
+              <NavBar user={user} setUser={setUser}/>
+              <ProfilePage user={user}/>
+            </>} 
+            />  
       </Routes>
       </>
 

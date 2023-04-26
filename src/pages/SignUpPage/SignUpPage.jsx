@@ -32,6 +32,10 @@ export default function SignUpPage({setUser}) {
           // payload of the JSON Web Token (JWT)
           const user = await usersService.signUp(credentials);
           setUser(user);
+
+          const back = document.querySelector('.backToHome')
+          back.click()
+          
         } catch (err){
             console.log(err)
           setError("Sign Up Failed - Try Again");
@@ -94,9 +98,9 @@ export default function SignUpPage({setUser}) {
                             required
                         />
                     </div>
-                    <Link to = "/" ><button id = "loginButton" type="submit" style = {{width: "100%", margin: "5%"}}>Sign Up</button></Link>
+                    <Link to = "/" ><button id = "loginButton" type="submit" onClick={handleSubmit} style = {{width: "100%", margin: "5%"}}>Sign Up</button></Link>
                 </form>
-                <Link to = "/" ><button id = "loginButton" style = {{ width: "100%", marginTop: "25%"}}>Back to home</button></Link>
+                <Link to = "/" ><button id = "loginButton" class = "backToHome" style = {{ width: "100%", marginTop: "25%"}}>Back to home</button></Link>
             </div>
         </div>
     </div>

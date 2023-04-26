@@ -4,7 +4,7 @@ const router = express.Router();
 const searchController = require('../../controllers/api/search');
 
 
-router.get('/search', searchController.search);
+router.get('/:query', searchController.search);
 
 
 

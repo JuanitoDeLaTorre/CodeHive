@@ -14,11 +14,14 @@ import NewCatForm from "../NewCatForm/NewCatForm";
 import NewSnippetForm from "../NewSnippetForm/NewSnippetForm";
 import SnippetListPage from "../SnippetListPage/SnippetListPage";
 import SnippetShowPage from "../SnippetShowPage/SnippetShowPage";
+import ResultPage from "../ResultPage/ResultPage";
 
 
 
 function App() {
   const [user, setUser] = useState(getUser());
+  const [searchResults, setSearchResults] = useState({});
+
   console.log(user)
   return (
     <main className="App">
@@ -47,34 +50,34 @@ function App() {
             {/* HOME ROUTE */}
             <Route path="/" element={
             <>
-              <NavBar user={user} setUser={setUser}/>
+              <NavBar setSearchResults={setSearchResults} user={user} setUser={setUser}/>
             </>} 
             />
             {/* COMMUNITY ROUTE */}
             <Route path="/community" element={
             <>
-              <NavBar user={user} setUser={setUser}/>
+              <NavBar setSearchResults={setSearchResults} user={user} setUser={setUser}/>
               <CommunityPage user={user}/>
             </>} 
             />
             {/* PROFILE ROUTE */}
             <Route path="/profile/:name" element={
             <>
-              <NavBar user={user} setUser={setUser}/>
+              <NavBar setSearchResults={setSearchResults} user={user} setUser={setUser}/>
               <ProfilePage user={user}/>
             </>} 
             />  
             {/* ADD CATEGORY FORM */}
             <Route path="/addCatForm" element={
             <>
-              <NavBar user={user} setUser={setUser}/>
+              <NavBar setSearchResults={setSearchResults} user={user} setUser={setUser}/>
               <NewCatForm user={user}/>
             </>} 
             />  
             {/* ADD SNIPPET FORM */}
             <Route path="/addSnippetForm" element={
             <>
-              <NavBar user={user} setUser={setUser}/>
+              <NavBar setSearchResults={setSearchResults} user={user} setUser={setUser}/>
               <NewSnippetForm user={user}/>
             </>} 
             />  
@@ -82,7 +85,7 @@ function App() {
             {/* LIST SNIPPETS FROM CAT */}
             <Route path="/snippets-list/:catID" element={
             <>
-              <NavBar user={user} setUser={setUser}/>
+              <NavBar setSearchResults={setSearchResults} user={user} setUser={setUser}/>
               <SnippetListPage user={user}/>
             </>} 
             /> 
@@ -90,8 +93,15 @@ function App() {
             {/* SNIPPETS SHOW ROUTE */}
             <Route path="/snippets-show/:snipID" element={
             <>
-              <NavBar user={user} setUser={setUser}/>
+              <NavBar setSearchResults={setSearchResults} user={user} setUser={setUser}/>
               <SnippetShowPage user={user}/>
+            </>} 
+            /> 
+            {/* Results Page */}
+            <Route path="/results" element={
+            <>
+              <NavBar setSearchResults={setSearchResults} user={user} setUser={setUser}/>
+              <ResultPage searchResults={searchResults} user={user}/>
             </>} 
             /> 
       </Routes>

@@ -36,7 +36,7 @@
 
   #searchBar {
     font-family: inherit;
-    width: 20%;
+    width: 80%;
     height: 30px;
     padding: 10px;
     border: solid var(--paynes) 1px;
@@ -45,6 +45,7 @@
     transition: all 300ms ease-in-out;
     outline: none;
     color: var(--gunmetal);
+    display: flex;
 
   }
 

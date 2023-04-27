@@ -1,20 +1,25 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import * as userService from "../../utilities/users-services";
 import "../components.css";
 import hive from "../../resources/hiveIcon.png";
 
+
 import sendRequest from "../../utilities/send-request";
 
-const NavBar = ({ user, setUser }) => {
-  const [query, setQuery] = useState('');
+const NavBar = ({ user, setUser, setSearchResults }) => {
+  const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
 
+
+
+  const navigate = useNavigate();
   async function handleSearch(event) {
     event.preventDefault();
-    const response = await sendRequest(`/api/search/${query}`, 'GET');
+    const response = await sendRequest(`/api/search/${query}`, "GET");
     setResults(response);
-    console.log(response)
+    setSearchResults(response);
+    navigate('/results')
   }
 
   function handleLogout() {
@@ -67,9 +72,13 @@ const NavBar = ({ user, setUser }) => {
         </Link>
 
         <form onSubmit={handleSearch}>
-        <input type="text" value={query} onChange={(event) => setQuery(event.target.value)} />
-        <button type="submit">Search</button>
-      </form>
+          <input id="searchBar"
+            type="text"
+            value={query}
+            onChange={(event) => setQuery(event.target.value)}
+          />
+          <button type="submit">Search</button>
+        </form>
         <nav>
           <ul>
             <Link to="/community">

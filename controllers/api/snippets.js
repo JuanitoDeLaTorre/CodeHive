@@ -32,8 +32,9 @@ async function update(req, res) {
 async function remove(req, res) {
   try {
     const snippet = await Snippet.findByIdAndRemove(req.params.id);
-    res.json(snippet);
-    // res.status(201)
+    // res.json(snippet);
+    // res.status(201);
+    console.log("OK?");
   } catch (err) {
     res.status(400).json(err);
     console.log(err);

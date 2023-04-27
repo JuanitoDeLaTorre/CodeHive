@@ -15,6 +15,8 @@ import NewSnippetForm from "../NewSnippetForm/NewSnippetForm";
 import SnippetListPage from "../SnippetListPage/SnippetListPage";
 import SnippetShowPage from "../SnippetShowPage/SnippetShowPage";
 import ResultPage from "../ResultPage/ResultPage";
+import EditSnippetForm from "../EditSnippetForm/EditSnippetForm";
+import EditCategoryForm from "../EditCategoryForm/EditCategoryForm";
 
 
 
@@ -97,7 +99,24 @@ function App() {
               <SnippetShowPage user={user}/>
             </>} 
             /> 
-            {/* Results Page */}
+
+            {/* EDIT SNIPPETS FORM ROUTE */}
+            <Route path="/snippets-edit/:snipID" element={
+            <>
+              <NavBar setSearchResults={setSearchResults} user={user} setUser={setUser}/>
+              <EditSnippetForm user={user}/>
+            </>} 
+            
+            /> 
+            {/* EDIT CATEGORY FORM ROUTE */}
+            <Route path="/bins-edit/:catID" element={
+            <>
+              <NavBar setSearchResults={setSearchResults} user={user} setUser={setUser}/>
+              <EditCategoryForm user={user}/>
+            </>} 
+            
+            /> 
+            {/* RESULTS PAGE */}
             <Route path="/results" element={
             <>
               <NavBar setSearchResults={setSearchResults} user={user} setUser={setUser}/>

@@ -59,7 +59,7 @@ export default function SnippetShowPage({user}) {
         <p>{snip.description}</p>
         {cat.user === user._id ? 
             <div>
-                <Link to = ""><button>Edit</button></Link>
+                <Link to = {`/snippets-edit/${snip._id}`}><button>Edit</button></Link>
                 <a href={`/snippets-list/${cat._id}`}><button onClick={handleDelete}>Delete</button></a>
             </div>
         :

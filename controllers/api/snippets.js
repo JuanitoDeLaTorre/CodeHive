@@ -62,6 +62,7 @@ async function returnSnipsForUser(req, res) {
     result.push({
       _id: category._id,
       name: category.name,
+      description: category.description,
       snipCount: snipCount,
       snips: snips,
     });

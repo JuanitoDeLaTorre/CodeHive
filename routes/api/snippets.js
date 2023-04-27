@@ -10,5 +10,9 @@ router.get(
   "/fetchSnipsForUser/:user_id",
   snippetsController.returnSnipsForUser
 );
+router.get(
+  "/fetchSnipsForCat/:category_id",
+  snippetsController.returnSnipsForCat
+);
 
 module.exports = router;

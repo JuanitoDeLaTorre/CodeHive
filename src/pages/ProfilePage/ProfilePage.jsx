@@ -58,7 +58,11 @@ function fillAllSnips() {
     <div className = "mainContent">
         <h1 style = {{fontSize: "3em"}}>Your <span style = {{color: "var(--accentOrange"}}>Bins</span></h1>
         {/* <Link to "/addCatForm"><button>ADD BIN!</button></Link> */}
-        <Link to = "/addCatForm"><button>ADD BIN!</button></Link>
+        {profileName === user.username ? 
+          <Link to = "/addCatForm"><button>ADD BIN!</button></Link>
+        :
+        null
+      }
         <div className="categoryContainer">
             {allSnips.map((cat) => {
               // return <li key = {cat._id}>{cat.name}</li>

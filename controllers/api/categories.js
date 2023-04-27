@@ -49,9 +49,15 @@ async function getAllCatsForUser(req, res) {
   }
 }
 
+async function fetchOne(req, res) {
+  const category = await Category.findById(req.params.id);
+  res.json(category);
+}
+
 module.exports = {
   create,
   remove,
   getAllCatsForUser,
   update,
+  fetchOne,
 };

@@ -12,6 +12,8 @@ import CommunityPage from "../Community/CommunityPage";
 import ProfilePage from "../ProfilePage/ProfilePage";
 import NewCatForm from "../NewCatForm/NewCatForm";
 import NewSnippetForm from "../NewSnippetForm/NewSnippetForm";
+import SnippetListPage from "../SnippetListPage/SnippetListPage";
+import SnippetShowPage from "../SnippetShowPage/SnippetShowPage";
 
 
 
@@ -76,6 +78,22 @@ function App() {
               <NewSnippetForm user={user}/>
             </>} 
             />  
+
+            {/* LIST SNIPPETS FROM CAT */}
+            <Route path="/snippets-list/:catID" element={
+            <>
+              <NavBar user={user} setUser={setUser}/>
+              <SnippetListPage user={user}/>
+            </>} 
+            /> 
+
+            {/* SNIPPETS SHOW ROUTE */}
+            <Route path="/snippets-show/:snipID" element={
+            <>
+              <NavBar user={user} setUser={setUser}/>
+              <SnippetShowPage user={user}/>
+            </>} 
+            /> 
       </Routes>
       </>
 

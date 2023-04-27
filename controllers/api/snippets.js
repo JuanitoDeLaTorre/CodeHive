@@ -69,10 +69,34 @@ async function returnSnipsForUser(req, res) {
   res.json(result);
 }
 
+async function returnSnipsForCat(req, res) {
+  try {
+    const snippets = await Snippet.find({ category: req.params.category_id });
+    res.json(snippets);
+  } catch (err) {
+    res.status(400).json(err);
+    console.log(err);
+  }
+}
+
+async function fetchOne(req, res) {
+  try {
+    console.log(req.params.snip_id);
+    const snippet = await Snippet.findById(req.params.snip_id);
+    console.log(snippet);
+    res.json(snippet);
+  } catch (err) {
+    res.status(400).json(err);
+    console.log(err);
+  }
+}
+
 module.exports = {
   create,
   update,
   remove,
   getAllSnipsForCats,
   returnSnipsForUser,
+  returnSnipsForCat,
+  fetchOne,
 };

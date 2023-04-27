@@ -8,6 +8,8 @@ export default function CategoryCard({cat}) {
         console.log("FIRING!")
         const deleteCat = await sendRequest(`/api/categories/delete/${cat._id}`, 'DELETE')
     }
+
+    console.log(cat)
     
 
   return (
@@ -16,7 +18,8 @@ export default function CategoryCard({cat}) {
             <h4>{cat.name}</h4>
             <p>{cat.description}</p>
             <p>Number of snippets: {cat.snips.length}</p>
-            <a href = "/profile/Pablo"><button onClick={handleDelete}>DELETE CATEGORY</button></a>
+            <Link to = {`/bins-edit/${cat._id}`}><button>EDIT</button></Link>
+            <a href = "/profile/Pablo"><button onClick={handleDelete}>DELETE </button></a>
         </div>
     </Link>
   )

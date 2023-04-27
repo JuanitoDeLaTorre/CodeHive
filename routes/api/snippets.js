@@ -14,5 +14,6 @@ router.get(
   "/fetchSnipsForCat/:category_id",
   snippetsController.returnSnipsForCat
 );
+router.get("/fetchOne/:snip_id", snippetsController.fetchOne);
 
 module.exports = router;

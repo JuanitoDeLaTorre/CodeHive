@@ -79,6 +79,18 @@ async function returnSnipsForCat(req, res) {
   }
 }
 
+async function fetchOne(req, res) {
+  try {
+    console.log(req.params.snip_id);
+    const snippet = await Snippet.findById(req.params.snip_id);
+    console.log(snippet);
+    res.json(snippet);
+  } catch (err) {
+    res.status(400).json(err);
+    console.log(err);
+  }
+}
+
 module.exports = {
   create,
   update,
@@ -86,4 +98,5 @@ module.exports = {
   getAllSnipsForCats,
   returnSnipsForUser,
   returnSnipsForCat,
+  fetchOne,
 };

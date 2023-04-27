@@ -11,7 +11,7 @@ export default function CategoryCard({cat}) {
     
 
   return (
-    <Link to = {`/snippets/${cat._id}`}>
+    <Link to = {`/snippets-list/${cat._id}`}>
         <div className='categoryCard'>
             <h4>{cat.name}</h4>
             <p>{cat.description}</p>

@@ -13,6 +13,7 @@ import ProfilePage from "../ProfilePage/ProfilePage";
 import NewCatForm from "../NewCatForm/NewCatForm";
 import NewSnippetForm from "../NewSnippetForm/NewSnippetForm";
 import SnippetListPage from "../SnippetListPage/SnippetListPage";
+import SnippetShowPage from "../SnippetShowPage/SnippetShowPage";
 
 
 
@@ -79,10 +80,18 @@ function App() {
             />  
 
             {/* LIST SNIPPETS FROM CAT */}
-            <Route path="/snippets/:catID" element={
+            <Route path="/snippets-list/:catID" element={
             <>
               <NavBar user={user} setUser={setUser}/>
               <SnippetListPage user={user}/>
+            </>} 
+            /> 
+
+            {/* SNIPPETS SHOW ROUTE */}
+            <Route path="/snippets-show/:snipID" element={
+            <>
+              <NavBar user={user} setUser={setUser}/>
+              <SnippetShowPage user={user}/>
             </>} 
             /> 
       </Routes>

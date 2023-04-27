@@ -22,14 +22,6 @@ export default function SnippetListPage({user}) {
     const returnCat = await sendRequest(`/api/categories/fetchOne/${catID}`, 'GET')
     setCat(returnCat)
   }
-
-  function checkLines() {
-    allSnips.forEach((snippet) => {
-      const lines = (snippet.body.match(/\n/g) || '').length + 1
-      console.log("lines for " + snippet.title + " = " + lines)
-      
-    })
-  }
   
 
   useEffect(() => {
@@ -43,13 +35,11 @@ export default function SnippetListPage({user}) {
   return (
     <div className='mainContent'>
       <h1>{cat.name}</h1>
-      {allSnips.map((snippet) => {
-        return <>
-          <SnippetCard key = {snippet._id} snippet = {snippet} user = {user}/> 
-          <pre style = {{textAlign: 'left'}}>{snippet.body}</pre>
-        </>
-      })}
-      <button onClick={checkLines}>CHECK LINES</button>
+      <div style = {{display: 'flex', flexWrap: 'wrap'}}>
+        {allSnips.map((snippet) => {
+          return <SnippetCard key = {snippet._id} snippet = {snippet} user = {user}/> 
+        })}
+      </div>
     </div>
   )
 }

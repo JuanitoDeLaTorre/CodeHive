@@ -56,8 +56,13 @@ function fillAllSnips() {
 
   return (
     <div className = "mainContent">
-        <h1 style = {{fontSize: "3em"}}>Your <span style = {{color: "var(--accentOrange"}}>Bins</span></h1>
-        {/* <Link to "/addCatForm"><button>ADD BIN!</button></Link> */}
+      {profileName === user.username ? 
+      <h1 style = {{fontSize: "3em"}}>Your <span style = {{color: "var(--accentOrange"}}>Bins</span></h1>
+      :
+      <h1 style = {{fontSize: "3em"}}>{profileName}'s <span style = {{color: "var(--accentOrange"}}>Bins</span></h1>
+}
+    
+        {/* /* <Link to "/addCatForm"><button>ADD BIN!</button></Link> */}
         {profileName === user.username ? 
           <Link to = "/addCatForm"><button>ADD BIN!</button></Link>
         :

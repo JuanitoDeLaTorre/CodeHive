@@ -42,13 +42,25 @@ export default function NewSnippetForm({user}) {
 
       navigate(`/profile/${user.username}`)
     }
+
+    function handleInput(e) {
+        if (e.key === 'Tab' && !e.shiftKey) {
+            e.preventDefault();
+          } else if (e.key === 'Tab' && e.shiftKey) {
+            e.preventDefault();
+            var start = this.selectionStart;
+            var end = this.selectionEnd;
+            this.value = this.value.substring(0, start) + '     ' + this.value.substring(end);
+            this.selectionStart = this.selectionEnd = start + 5;
+          }
+    }
   
     return (
         <div className="mainContent">
             <div style={{ textAlign: "center" }}>
-                <form onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="title">title</label>
+                <form onSubmit={handleSubmit} style = {{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '10px'}}>
+                <div style = {{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
+                    <label htmlFor="title">Title</label>
                     <input
                     type="text"
                     id="title"
@@ -56,7 +68,7 @@ export default function NewSnippetForm({user}) {
                     onChange={(e) => settitle(e.target.value)}
                     />
                 </div>
-                <div>
+                <div style = {{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
                     <label htmlFor="category">Category</label>
                     <select
                     id="category"
@@ -70,21 +82,25 @@ export default function NewSnippetForm({user}) {
                     ))}
                     </select>
                 </div>
-                <div>
+                <div style = {{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
                     <label htmlFor="body">Body Text</label>
                     <textarea
                     id="body"
                     value={body}
                     onChange={handleChange}
+                    onInput={handleInput}
+                    autoFocus = 'autofocus'
+                    tabIndex='-1'
                     ></textarea>
                 </div>
-                <div>
+                <div style = {{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
                     <label htmlFor="description">Description</label>
-                    <textarea
+                    <input
                     id="description"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
-                    ></textarea>
+                    
+                    ></input>
                 </div>
                 <button type="submit">Submit</button>
                 </form>

@@ -34,10 +34,11 @@ async function handleSubmit (e){
 
 return (
     <div className="mainContent">
-            <h1 id = "success" style = {{opacity: "0"}}>SUCCESS!</h1>
-            <form onSubmit = {handleSubmit} id = "newCatForm">
+        <h1>Create <span style = {{color: 'var(--accentOrange)', marginBottom: '0'}}>Bin</span></h1>
+            {/* <h1 id = "success" style = {{opacity: "0"}}>SUCCESS!</h1> */}
+            <form onSubmit = {handleSubmit} id = "newCatForm" style = {{display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'center'}}>
                 <div>
-                <label htmlFor="name">Name</label>
+                <p>Name</p>
                 <input
                     type="text"
                     id="name"
@@ -46,16 +47,16 @@ return (
                 />
                 </div>
                 <div>
-                <label htmlFor="description">Description</label>
+                <p>Description</p>
                 <textarea
                     id="description"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                 ></textarea>
                 </div>
-                <button type="submit">Submit</button>
+                <div className = "orangeButton" onClick = {handleSubmit} style = {{width: "20%"}}>Submit</div>
             </form>
-            <Link to = {`/profile/${user.username}`}><button id = "cancel">Cancel</button></Link>
+            <Link to = {`/profile/${user.username}`}><div className = "orangeButton" id = "cancel">Cancel</div></Link>
     </div>
         
 );

@@ -8,5 +8,6 @@ router.post("/", usersCtrl.create);
 router.post("/login", usersCtrl.login);
 router.get("/fetchUsers", usersCtrl.fetchUsers);
 router.get("/fetchOneUser/:username", usersCtrl.fetchOneUser);
+router.get("/fetchForCommunityPage", usersCtrl.fetchForCommunityPage);
 
 module.exports = router;

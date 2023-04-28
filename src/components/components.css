@@ -1,0 +1,223 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,600;0,800;1,100;1,300;1,400&family=Pathway+Gothic+One&display=swap');
+:root {
+    --white: white;
+    --accentOrange: #F8CB00;
+    --gunmetal: #2D3142;
+    --headerDark: #04121F;
+    --paynes: #4F5D75;
+    --silver: #BFC0C0;
+  }
+
+  header {
+    margin: 0;
+    width: 100%;
+    height: 10vh;
+    padding: 7px 10% 7px 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--headerDark);
+    color: var(--white);
+    box-shadow: 0px 0px 30px var(--accentOrange);
+    position: fixed;
+    left: 0%;
+    top: 0;
+    z-index: 1000;
+  }
+
+  header ul {
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+    gap: 20px;
+  }
+
+  header ul li {
+    font-size: 0.9em;
+  }
+
+  #searchBar {
+    font-family: inherit;
+    width: 80%;
+    height: 30px;
+    padding: 10px;
+    border: solid var(--paynes) 1px;
+    background-color: var(--white);
+    border-radius: 5px;
+    transition: all 300ms ease-in-out;
+    outline: none;
+    color: var(--gunmetal);
+    display: flex;
+
+  }
+
+  #searchButton {
+    border: solid var(--paynes) 1px;
+    background-color: var(--white);
+    border-radius: 5px;
+    transition: all 300ms ease-in-out;
+    outline: none;
+    color: var(--gunmetal);
+    
+  }
+
+
+  #searchButton:focus {
+    border: solid var(--accentOrange) 2px;
+    box-shadow: 0px 0px 10px var(--accentOrange);
+  }
+
+  #searchBar:focus {
+    border: solid var(--accentOrange) 2px;
+    box-shadow: 0px 0px 10px var(--accentOrange);
+  }
+
+#hiveLogo {
+    height: 50px;
+    width: auto;
+  }
+
+#navElement {
+    transition: all 300ms ease-in-out;
+    position: relative;
+    color: rgb(232, 232, 232);
+    transition: all 300ms ease-in-out;
+}
+
+#navElement:hover {
+    color: var(--white)
+}
+
+#navElement::after {
+    content: '';
+    position: absolute;
+    height: 0.1rem;
+    width: 100%;
+    background-color: var(--accentOrange);
+    left: 0;
+    bottom: -5px;
+    transform: scale(0,1);
+    transform-origin: 0% 100%;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+}
+
+#navElement:hover::after {
+    transform: scale(1,1);
+    opacity: 1;
+}
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  @media (width < 700px) {
+    #searchBar {
+        display: none;
+    }
+
+    #headerTitle {
+        display: none;
+    }
+  }
+
+  #profileCard {
+    font-family: "Montserrat";
+    color: white;
+    font-weight: 200;
+    height: 20vh;
+    width: 20vw;
+    margin: 30px;
+    border-radius: 15px;
+    background: rgb(79,93,117);
+    background: linear-gradient(113deg, rgba(79,93,117,1) 0%, rgba(81,93,99,1) 100%);
+    padding: 10px;
+    transition: box-shadow 300ms ease-in-out;
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+  }
+
+  #profileCard:hover {
+    /* border: solid white 1px; */
+    box-shadow: 0px 0px 20px rgb(177, 183, 199);
+  }
+
+  #profilePicCard {
+    height: 30px;
+    width: 30px;
+    border-radius: 100%;
+    object-fit: cover;
+  }
+
+  #hiveBadge {
+    height: 90%;
+    width: auto;
+    position: absolute;
+    content: '';
+    opacity: 0.3;
+    right: -20%;
+    top: -20%
+  }
+
+  #loginButtonNav {
+    width: 100px;
+    height: auto;
+    padding: 5px;
+    border: none;
+    background: rgb(248,203,0);
+    background: linear-gradient(45deg, rgb(233, 190, 0) 0%, rgb(141, 115, 0) 100%);
+    border-radius: 7px;
+    cursor: pointer; 
+    color: white;
+    transition: all 300ms ease-in-out;
+    font-weight: 300;
+  }
+
+  #loginButtonNav:hover {
+    box-shadow: 0px 0px 10px var(--accentOrange);
+  }
+
+  .categoryCard {
+    height: auto;
+    width: 15vw;
+    /* background: rgb(214,175,0);
+    background: linear-gradient(140deg, rgba(214,175,0,1) 0%, rgba(248,203,0,1) 100%);    color: white; */
+    background-color: transparent;
+    text-align: center;
+    border-radius: 20px;
+    border: solid white 1px;
+    margin: 20px;
+    transition: all 300ms ease-in-out;
+  }
+
+  .categoryCard:hover {
+    color: var(--gunmetal);
+    background-color: white;
+    border: solid var(--gunmetal) 1px;
+    box-shadow: 0px 0px 20px var(--white);
+  }
+
+  .snippetCard {
+    text-align: left;
+    height: auto;
+    width: 15vw;
+    /* background: rgb(214,175,0);
+    background: linear-gradient(140deg, rgba(214,175,0,1) 0%, rgba(248,203,0,1) 100%);    color: white; */
+    background-color: transparent;
+    text-align: center;
+    border-radius: 20px;
+    border: solid white 1px;
+    margin: 20px;
+    transition: all 300ms ease-in-out;
+    padding: 1%;
+  }
+
+  .snippetCard:hover {
+    color: var(--gunmetal);
+    background-color: white;
+    border: solid var(--gunmetal) 1px;
+    box-shadow: 0px 0px 20px var(--white);
+  }
+

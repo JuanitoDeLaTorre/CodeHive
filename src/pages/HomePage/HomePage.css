@@ -1,0 +1,30 @@
+.mainPageTitle {
+    position: relative;
+}
+
+#titleHive {
+    z-index: 0;
+    opacity: 0.2;
+    height: 300px;
+    width: auto;
+    top: 0%;
+    left: 10%;
+    position: fixed;
+}
+
+#titleBees{
+    z-index: 0;
+    opacity: 0.2;
+    height: 400px;
+    width: auto;
+    bottom: 20%;
+    right: 10%;
+    position: fixed;
+}
+
+
+
+#featuresList li {
+    margin-top: 15px;
+}
+

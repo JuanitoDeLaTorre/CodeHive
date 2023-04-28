@@ -18,6 +18,9 @@ import ResultPage from "../ResultPage/ResultPage";
 import EditSnippetForm from "../EditSnippetForm/EditSnippetForm";
 import EditCategoryForm from "../EditCategoryForm/EditCategoryForm";
 
+import "highlight.js/styles/atom-one-dark.css";
+
+
 
 
 function App() {

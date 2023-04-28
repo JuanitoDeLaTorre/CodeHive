@@ -17,6 +17,7 @@ const NavBar = ({ user, setUser, setSearchResults }) => {
     setResults(response);
     setSearchResults(response);
     navigate("/results");
+    setQuery("");
   }
 
   function handleLogout() {

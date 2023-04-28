@@ -62,6 +62,15 @@ async function fetchOneUser(req, res) {
     console.log("err");
   }
 }
+async function fetchOneById(req, res) {
+  try {
+    const user = await User.findOne({ _id: req.params.id });
+    res.json(user);
+  } catch (err) {
+    // console.log(err);
+    console.log("err");
+  }
+}
 
 async function fetchForCommunityPage(req, res) {
   try {
@@ -111,5 +120,6 @@ module.exports = {
   create,
   fetchUsers,
   fetchOneUser,
+  fetchOneById,
   fetchForCommunityPage,
 };

@@ -3,8 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import "./ProfilePage.css";
 import sendRequest from "../../utilities/send-request";
 import CategoryCard from "../../components/CategoryCard/CategoryCard";
-import hiveBadge from '../../resources/bee-hive (2).png'
-
+import hiveBadge from "../../resources/bee-hive (2).png";
 
 export default function Profile({ user }) {
   const [allSnips, setAllSnips] = useState([]);
@@ -76,17 +75,15 @@ export default function Profile({ user }) {
       {/* /* <Link to "/addCatForm"><button>ADD BIN!</button></Link> */}
       {profileName === user.username ? (
         <Link to="/addCatForm">
-          <div
-            className="orangeButton"
-            
-          >
-            ADD BIN!
-          </div>
+          <div className="orangeButton">ADD BIN</div>
         </Link>
       ) : null}
-      <div id="profileCard" style={{position: "absolute", top: "80px", left: "155px"}}>
+      <div
+        id="profileCard"
+        style={{ position: "absolute", top: "80px", left: "155px" }}
+      >
         <div style={{ display: "flex", justifyContent: "left", gap: "5%" }}>
-        <img id = "profilePicCard" src={user.profile_pic} alt="" />
+          <img id="profilePicCard" src={user.profile_pic} alt="" />
           <h4
             style={{
               fontWeight: "200",
@@ -120,24 +117,34 @@ export default function Profile({ user }) {
           }}
         >
           <p> total snippets: {allSnipsIndividual.length}</p>
-          <span style={{ fontSize: "2em" }}>/</span>
-          <p>Top categories: {allSnips.length}</p>
         </div>
       </div>
-<hr />
-      <div className="categoryContainer">
-        {allSnips.map((cat) => {
-          // return <li key = {cat._id}>{cat.name}</li>
-          return (
-            <CategoryCard
-              key={cat._id}
-              profileName={profileName}
-              user={user}
-              cat={cat}
-            />
-          );
-        })}
-      </div>
+      <hr />
+      {allSnips.length === 0 ? (
+        <p
+          style={{
+            textAlign: "center",
+            color: "var(--accentOrange",
+            fontSize: "25px",
+          }}
+        >
+          Oopsie! It looks like this bee hive is a little empty. Click on the
+          adorable 'Add Bin' button to give these bees a new home 🐝🏠🌸
+        </p>
+      ) : (
+        <div className="categoryContainer">
+          {allSnips.map((cat) => {
+            return (
+              <CategoryCard
+                key={cat._id}
+                profileName={profileName}
+                user={user}
+                cat={cat}
+              />
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }

@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import sendRequest from '../../utilities/send-request'
-import hljs from 'highlight.js'
+// import hljs from 'highlight.js'
 
 export default function SnippetShowPage({user}) {
+
+    let hljs = require('highlight.js/lib/common');
 
     const {snipID} = useParams()
 
@@ -25,6 +27,16 @@ export default function SnippetShowPage({user}) {
         const deleteSnip = await sendRequest(`/api/snippets/delete/${snip._id}`, 'DELETE')
         console.log(deleteSnip)
     }
+
+    // function findLanguageOfHLJSWithID(id) {
+    //     var foundClasses = document.querySelector('#' + id + '.hljs').attr('class').split(' ');
+    //     return foundClasses[foundClasses.length - 1];
+    //   }
+    // console.log(findLanguageOfHLJSWithID('codeHere'))
+
+    useEffect(() => {
+        hljs.highlightAll();
+      });
     
 
     useEffect(() => {
@@ -39,7 +51,6 @@ export default function SnippetShowPage({user}) {
     <div className='mainContent'>
         <link rel="stylesheet" href="/path/to/styles/default.min.css"/>
         <script src="/path/to/highlight.min.js"></script>
-        <script>hljs.highlightAll();</script>
 
         <h1>{snip.title}</h1>
         <div>
@@ -49,7 +60,7 @@ export default function SnippetShowPage({user}) {
         <h3 style = {{color: 'var(--accentOrange'}}>Code</h3>
         <div id="codeContainer" style = {{marginLeft: '18%', border: 'solid white 2px', borderRadius: '10px', padding: '10px', width: '50vw', overflow: 'scroll'}}>
             <pre style = {{textAlign: 'left'}}>
-                <code>
+                <code className='language-javascript' customStyle = {{backgroundColor: 'transparent'}}>
 
                     {snip.body}
                 </code>
@@ -65,7 +76,7 @@ export default function SnippetShowPage({user}) {
         :
         null
     }
-        
+
     </div>
   )
 }

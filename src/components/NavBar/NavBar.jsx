@@ -4,14 +4,11 @@ import * as userService from "../../utilities/users-services";
 import "../components.css";
 import hive from "../../resources/hiveIcon.png";
 
-
 import sendRequest from "../../utilities/send-request";
 
 const NavBar = ({ user, setUser, setSearchResults }) => {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
-
-
 
   const navigate = useNavigate();
   async function handleSearch(event) {
@@ -19,7 +16,7 @@ const NavBar = ({ user, setUser, setSearchResults }) => {
     const response = await sendRequest(`/api/search/${query}`, "GET");
     setResults(response);
     setSearchResults(response);
-    navigate('/results')
+    navigate("/results");
   }
 
   function handleLogout() {
@@ -71,13 +68,16 @@ const NavBar = ({ user, setUser, setSearchResults }) => {
           </div>
         </Link>
 
-        <form onSubmit={handleSearch}>
-          <input id="searchBar"
+        <form onSubmit={handleSearch} style={{ display: "flex" }}>
+          <input
+            id="searchBar"
             type="text"
             value={query}
             onChange={(event) => setQuery(event.target.value)}
           />
-          <button type="submit">Search</button>
+          <button id="searchButton" type="submit">
+            Search
+          </button>
         </form>
         <nav>
           <ul>

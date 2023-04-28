@@ -1,62 +1,68 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
+import "./ResultPage.css";
 
 export default function ResultPage({ user, searchResults }) {
-  console.log(searchResults);
+  const { users = [], categories = [], snippets = [] } = searchResults;
 
-  const { users } = searchResults;
-  const { categories } = searchResults;
-  const { snippets } = searchResults;
+  useEffect(() => {
+    const hideEmptyResults = (name, value) => {
+      const resultElement = document.querySelector(`#result${name}`);
+      if (value.length === 0 && resultElement) {
+        resultElement.style.display = "none";
+      }
+    };
 
+    hideEmptyResults("user", users);
+    hideEmptyResults("category", categories);
+    hideEmptyResults("snippet", snippets);
+  }, [users, categories, snippets]);
 
-    const names = ['user', 'category', 'snippet']
-    const values = [users, categories, snippets]
-
-    for(let i = 0; i < names.length; i++) {
-        console.log("The length of " + names[i] + " is " + values[i].length)
-        if(!values[i].length) {
-            console.log(values[i])
-            // console.log(document.querySelector(`#results${names[i]}`))
-            document.querySelector(`#result${names[i]}`).style.display = "none";
-
-        }
-    }
-    
-
-    //  users/categories/snippets + 
-    //  users/!categories/!snippets + 
-    //  users/categories/!snippets +
-    //  !users/categories/snippets +
-    //  !users/categories/!snippets + 
-    //  !users/!categories/snippets +
-
-   
   return (
-    <div className="mainContent">
-      <div className="resultContainer" style={{ display: "flex" , justifyContent: "center"}}>
-        <div id = "resultuser" style={{width:'33%', border: 'solid red 2px'}}>
-          <h2>Users</h2>
-          <ul>
-            {users.map((userLoop) => {
-                return <li key = {userLoop._id}>{userLoop.username}</li>
-            })}
+    <div className="resultMainContent">
+      <div className="resultPageContainer">
+        {users.length > 0 && (
+          <div id="resultuser" className="resultPageSection">
+            <h2>Users</h2>
+            <ul>
+              {users.map((userLoop) => (
+                <li key={userLoop._id}>
+                  <Link to={`/profile/${userLoop.username}`}>
+                    {userLoop.username}
+                  </Link>
+                </li>
+              ))}
             </ul>
-        </div>
-        <div id = "resultcategory" style={{width:'33%', border: 'solid red 2px'} }>
-          <h2>Categories</h2>
-          <ul>
-            {categories.map((categoryLoop) => {
-                return <li key = {categoryLoop._id}>{categoryLoop.name}</li>
-            })}
+          </div>
+        )}
+        {categories.length > 0 && (
+          <div id="resultcategory" className="resultPageSection">
+            <h2>Categories</h2>
+            <ul>
+              {categories.map((categoryLoop) => (
+                <li key={categoryLoop._id}>
+                  <Link to={`/snippets-list/${categoryLoop._id}`}>
+                    {categoryLoop.name}
+                  </Link>
+                </li>
+              ))}
             </ul>
-        </div>
-        <div id = "resultsnippet" style={{width:'33%', border: 'solid red 2px'}}>
-          <h2>Snippets</h2>
-          <ul>
-            {snippets.map((snippetLoop) => {
-                return <li key = {snippetLoop._id}>{snippetLoop.title}</li>
-            })}
+          </div>
+        )}
+        {snippets.length > 0 && (
+          <div id="resultsnippet" className="resultPageSection">
+            <h2>Snippets</h2>
+            <ul>
+              {snippets.map((snippetLoop) => (
+                <li key={snippetLoop._id}>
+                  <Link to={`/snippets-show/${snippetLoop._id}`}>
+                    {snippetLoop.title}
+                  </Link>
+                </li>
+              ))}
             </ul>
-        </div>
+          </div>
+        )}
       </div>
     </div>
   );

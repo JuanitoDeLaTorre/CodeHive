@@ -69,7 +69,8 @@ function fillAllSnips() {
           <Link to = "/addCatForm"><button>ADD BIN!</button></Link>
         :
         null
-      }
+      } 
+      
         <div className="categoryContainer">
             {allSnips.map((cat) => {
               // return <li key = {cat._id}>{cat.name}</li>

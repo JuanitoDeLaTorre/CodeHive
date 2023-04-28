@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import './NewSnippetForm.css'
 import sendRequest from '../../utilities/send-request';
 import { useNavigate, Link } from 'react-router-dom';
 import hljs from "highlight.js";
@@ -61,8 +62,8 @@ export default function NewSnippetForm({user}) {
             <h1>Add new <span style = {{color: 'var(--accentOrange)'}}>snippet</span></h1>
             {categories.length && !isLoading ?
             <div style={{ textAlign: "center" }}>
-                <form onSubmit={handleSubmit} style = {{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '10px'}}>
-                <div style = {{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
+                <form onSubmit={handleSubmit} className='newSnippetForm'>
+                <div >
                     <label htmlFor="title">Title</label>
                     <input
                     type="text"
@@ -71,8 +72,8 @@ export default function NewSnippetForm({user}) {
                     onChange={(e) => settitle(e.target.value)}
                     />
                 </div>
-                <div style = {{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
-                    <label htmlFor="category">Bin</label>
+                <div >
+                    <label htmlFor="category">Category</label>
                     <select
                     id="category"
                     value={category}
@@ -85,8 +86,8 @@ export default function NewSnippetForm({user}) {
                     ))}
                     </select>
                 </div>
-                <div style = {{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
-                    <label htmlFor="body">Body Text</label>
+                <div>
+                    <label htmlFor="body">Code</label>
                     <textarea
                     id="body"
                     value={body}
@@ -96,7 +97,7 @@ export default function NewSnippetForm({user}) {
                     tabIndex='-1'
                     ></textarea>
                 </div>
-                <div style = {{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
+                <div>
                     <label htmlFor="description">Description</label>
                     <input
                     id="description"
@@ -105,7 +106,7 @@ export default function NewSnippetForm({user}) {
                     
                     ></input>
                 </div>
-                <button type="submit">Submit</button>
+                <button type="submit" className="orangeButton">Submit</button>
                 </form>
             </div>
             : 

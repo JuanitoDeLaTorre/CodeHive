@@ -1,0 +1,38 @@
+.newSnippetForm {
+    max-width: 65%;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #04121F ;
+  }
+  
+  .newSnippetForm label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #F8CB00;
+  }
+  
+  .newSnippetForm input,
+  .newSnippetForm select,
+  .newSnippetForm textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .newSnippetForm textarea {
+    height: 200px;
+  }
+  
+.newSnippetForm button {
+    background-color: #4F5D75;
+    font-weight: bold;
+    font-size: 30px;
+  }
+  

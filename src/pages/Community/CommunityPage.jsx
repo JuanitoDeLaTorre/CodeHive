@@ -22,9 +22,9 @@ export default function CommunityPage({user}) {
     },[])
 
 
-  return ( isLoading ? <p>ALO</p> :
+  return (
     <div className="mainContent">
-        <h1 style = {{fontSize: "3em"}}>See what's <span style = {{color: "var(--accentOrange)"}}>buzzing...</span></h1>
+        <h1 style = {{fontSize: "3em"}}>Our community is the  <span style = {{color: "var(--accentOrange)"}}>bee's knees!</span></h1>
         <hr style = {{border: "solid white 1px"}}/>
         <div id="communityContainer">
             {users.map(userLoop => <ProfileCard key = {userLoop._id} user = {userLoop}/>)}

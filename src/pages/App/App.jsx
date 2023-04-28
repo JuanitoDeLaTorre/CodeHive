@@ -17,6 +17,7 @@ import SnippetShowPage from "../SnippetShowPage/SnippetShowPage";
 import ResultPage from "../ResultPage/ResultPage";
 import EditSnippetForm from "../EditSnippetForm/EditSnippetForm";
 import EditCategoryForm from "../EditCategoryForm/EditCategoryForm";
+import HomePage from "../HomePage/HomePage";
 
 import "highlight.js/styles/atom-one-dark.css";
 
@@ -30,21 +31,9 @@ function App() {
   console.log(user)
   return (
     <main className="App">
-      {/* <h1>Apps</h1>
-      {user ? (
-        <>
-          <NavBar user={user} setUser={setUser}/>
-          <Routes>
-            <Route path="/orders/new" element={<NewOrderPage />} />
-            <Route path="/orders/" element={<OrderHistoryPage />} />
-          </Routes>
-        </>
-      ) : (
-        <AuthPage setUser={setUser}/>
-      )} */}
-      <>
-      {/* <NavBar user={user} setUser={setUser}/> */}
       
+      <>
+
       <Routes>
             {/* SIGN IN ROUTE */}
             <Route path="/signin" element={<LoginPage setUser={setUser}/>}></Route>
@@ -56,6 +45,7 @@ function App() {
             <Route path="/" element={
             <>
               <NavBar setSearchResults={setSearchResults} user={user} setUser={setUser}/>
+              <HomePage user={user}/>
             </>} 
             />
             {/* COMMUNITY ROUTE */}

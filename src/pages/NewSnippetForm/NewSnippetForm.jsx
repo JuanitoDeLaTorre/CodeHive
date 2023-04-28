@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import './NewSnippetForm.css'
 import sendRequest from '../../utilities/send-request';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import hljs from "highlight.js";
 
 
@@ -11,7 +11,7 @@ export default function NewSnippetForm({user}) {
     const [body, setBody] = useState("");
     const [description, setDescription] = useState("");
   
-    const [categories, setCategories] = useState([]);
+    const [categories, setCategories, isLoading] = useState([]);
 
     const navigate = useNavigate();
     let formattedText;
@@ -44,7 +44,7 @@ export default function NewSnippetForm({user}) {
       navigate(`/profile/${user.username}`)
     }
 
-    function handleInput(e) {
+    function handleInput2(e) {
         if (e.key === 'Tab' && !e.shiftKey) {
             e.preventDefault();
           } else if (e.key === 'Tab' && e.shiftKey) {
@@ -58,6 +58,9 @@ export default function NewSnippetForm({user}) {
   
     return (
         <div className="mainContent">
+            {isLoading ? <p>HELLO</p> : null}
+            <h1>Add new <span style = {{color: 'var(--accentOrange)'}}>snippet</span></h1>
+            {categories.length && !isLoading ?
             <div style={{ textAlign: "center" }}>
                 <form onSubmit={handleSubmit} className='newSnippetForm'>
                 <div >
@@ -89,7 +92,7 @@ export default function NewSnippetForm({user}) {
                     id="body"
                     value={body}
                     onChange={handleChange}
-                    onInput={handleInput}
+                    onInput={handleInput2}
                     autoFocus = 'autofocus'
                     tabIndex='-1'
                     ></textarea>
@@ -106,6 +109,13 @@ export default function NewSnippetForm({user}) {
                 <button type="submit" className="orangeButton">Submit</button>
                 </form>
             </div>
+            : 
+            <>
+                <hr />
+                <h1>Looking pretty empty in here!</h1>
+                <h3>Head to your <Link to = {`/profile/${user.username}`} style = {{color: 'var(--accentOrange)'}}>profile</Link> to add a bin!</h3>
+            </>
+            }
         </div>
     );
 

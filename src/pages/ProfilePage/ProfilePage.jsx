@@ -40,6 +40,8 @@ function fillAllSnips() {
 }
 }
 
+
+
   useEffect(() => {
       getUserProfile()
       setAllSnips([])

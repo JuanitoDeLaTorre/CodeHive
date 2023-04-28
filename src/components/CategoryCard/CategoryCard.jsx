@@ -7,10 +7,7 @@ export default function CategoryCard({cat}) {
     async function handleDelete() {
         console.log("FIRING!")
         const deleteCat = await sendRequest(`/api/categories/delete/${cat._id}`, 'DELETE')
-    }
-
-    console.log(cat)
-    
+    }    
 
   return (
     <Link to = {`/snippets-list/${cat._id}`}>

@@ -5,13 +5,13 @@ import "./ResultPage.css";
 export default function ResultPage({ user, searchResults }) {
   const { users = [], categories = [], snippets = [] } = searchResults;
 
+  const hideEmptyResults = (name, value) => {
+    const resultElement = document.querySelector(`#result${name}`);
+    if (value.length === 0 && resultElement) {
+      resultElement.style.display = "none";
+    }
+  };
   useEffect(() => {
-    const hideEmptyResults = (name, value) => {
-      const resultElement = document.querySelector(`#result${name}`);
-      if (value.length === 0 && resultElement) {
-        resultElement.style.display = "none";
-      }
-    };
 
     hideEmptyResults("user", users);
     hideEmptyResults("category", categories);

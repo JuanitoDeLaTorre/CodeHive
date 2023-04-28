@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import sendRequest from '../../utilities/send-request'
+import './SnippetShowPage.css'
 // import hljs from 'highlight.js'
 
 export default function SnippetShowPage({user}) {
@@ -69,9 +70,13 @@ export default function SnippetShowPage({user}) {
         <h3 style = {{color: 'var(--accentOrange'}}>Description</h3>
         <p>{snip.description}</p>
         {cat.user === user._id ? 
-            <div>
-                <Link to = {`/snippets-edit/${snip._id}`}><button>Edit</button></Link>
-                <a href={`/snippets-list/${cat._id}`}><button onClick={handleDelete}>Delete</button></a>
+            <div style = {{display: 'flex', justifyContent: 'center', gap: '2px'}}>
+                {/* <Link to = {`/snippets-edit/${snip._id}`}><button>Edit</button></Link>
+                <a href={`/snippets-list/${cat._id}`}><button onClick={handleDelete}>Delete</button></a> */}
+
+                <Link to = {`/snippets-edit/${snip._id}`}><div className="orangeButton">Edit</div></Link>
+                <a href={`/snippets-list/${cat._id}`}><div className="orangeButton">Delete</div></a>
+
             </div>
         :
         null

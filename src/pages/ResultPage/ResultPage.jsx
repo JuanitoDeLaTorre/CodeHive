@@ -5,6 +5,7 @@ import "./ResultPage.css";
 export default function ResultPage({ user, searchResults }) {
   const { users = [], categories = [], snippets = [] } = searchResults;
 
+
   const hideEmptyResults = (name, value) => {
     const resultElement = document.querySelector(`#result${name}`);
     if (value.length === 0 && resultElement) {
@@ -12,11 +13,11 @@ export default function ResultPage({ user, searchResults }) {
     }
   };
   useEffect(() => {
-
     hideEmptyResults("user", users);
     hideEmptyResults("category", categories);
     hideEmptyResults("snippet", snippets);
   }, [users, categories, snippets]);
+  console.log(categories)
 
   return (
     <div className="resultMainContent">
@@ -24,43 +25,44 @@ export default function ResultPage({ user, searchResults }) {
         {users.length > 0 && (
           <div id="resultuser" className="resultPageSection">
             <h2>Users</h2>
-            <ul>
-              {users.map((userLoop) => (
-                <li key={userLoop._id}>
-                  <Link to={`/profile/${userLoop.username}`}>
-                    {userLoop.username}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            {users.map((userLoop) => (
+              <Link to={`/profile/${userLoop.username}`}>
+                <div className="resultCard" key={userLoop._id}>
+                  <h3>{userLoop.username}</h3>
+                  <p>{userLoop.bio}</p>
+                  <p>
+                    Created on: {new Date(userLoop.createdAt).toDateString()}
+                  </p>
+                </div>
+              </Link>
+            ))}
           </div>
         )}
         {categories.length > 0 && (
           <div id="resultcategory" className="resultPageSection">
-            <h2>Categories</h2>
-            <ul>
-              {categories.map((categoryLoop) => (
-                <li key={categoryLoop._id}>
-                  <Link to={`/snippets-list/${categoryLoop._id}`}>
-                    {categoryLoop.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <h2>Bins</h2>
+            {categories.map((categoryLoop) => (
+              <Link to={`/snippets-list/${categoryLoop._id}`}>
+                  <div className="resultCard" key={categoryLoop._id}>
+                  <h3>{categoryLoop.name}</h3>
+                  <p>Created by:</p>
+                  <p>{categoryLoop.description}</p>
+              </div>
+                </Link>
+            ))}
           </div>
         )}
         {snippets.length > 0 && (
           <div id="resultsnippet" className="resultPageSection">
             <h2>Snippets</h2>
-            <ul>
-              {snippets.map((snippetLoop) => (
-                <li key={snippetLoop._id}>
-                  <Link to={`/snippets-show/${snippetLoop._id}`}>
-                    {snippetLoop.title}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            {snippets.map((snippetLoop) => (
+              <Link to={`/snippets-show/${snippetLoop._id}`}>
+                  <div className="resultCard" key={snippetLoop._id}>
+                  <h3>{snippetLoop.title}</h3>
+                  <p>{snippetLoop.description}</p>
+              </div>
+                </Link>
+            ))}
           </div>
         )}
       </div>

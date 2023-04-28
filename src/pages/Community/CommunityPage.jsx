@@ -10,7 +10,7 @@ export default function CommunityPage({user}) {
     // const [allCats, setAllCats] = useState([])
 
     useEffect(() => {
-      //get all profiles signed up for community feature  
+      // get all profiles signed up for community feature  
       fetchAll()
     },[])
 

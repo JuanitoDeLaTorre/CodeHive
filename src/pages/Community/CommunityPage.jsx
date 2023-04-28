@@ -6,7 +6,7 @@ import sendRequest from '../../utilities/send-request'
 
 export default function CommunityPage({user}) {
 
-    const [users, setUsers] = useState([])
+    const [users, setUsers, isLoading] = useState([])
     // const [allCats, setAllCats] = useState([])
 
     useEffect(() => {
@@ -60,7 +60,7 @@ export default function CommunityPage({user}) {
     // }
 
 
-  return (
+  return ( isLoading ? <p>ALO</p> :
     <div className="mainContent">
         <h1 style = {{fontSize: "3em"}}>See what's <span style = {{color: "var(--accentOrange)"}}>buzzing...</span></h1>
         <hr style = {{border: "solid white 1px"}}/>

@@ -68,16 +68,17 @@ const NavBar = ({ user, setUser, setSearchResults }) => {
           </div>
         </Link>
 
-        <form onSubmit={handleSearch} style={{ display: "flex" }}>
+        <form style={{ display: "flex" , gap: '10px', alignItems: 'center'}}>
           <input
             id="searchBar"
             type="text"
             value={query}
             onChange={(event) => setQuery(event.target.value)}
           />
-          <button id="searchButton" type="submit">
+          {/* <button id="searchButton" type="submit">
             Search
-          </button>
+          </button> */}
+          <div onClick={handleSearch} className="orangeButton" style = {{textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>Search</div>
         </form>
         <nav>
           <ul>
@@ -109,8 +110,9 @@ const NavBar = ({ user, setUser, setSearchResults }) => {
               </>
             ) : (
               <Link to="/signin">
-                <li id="navElement">
-                  <button id="loginButtonNav">Login/Sign Up</button>
+                <li>
+                  {/* <button id="loginButtonNav">Login/Sign Up</button> */}
+                  <div className="orangeButton">Login/Sign Up</div>
                 </li>
               </Link>
             )}

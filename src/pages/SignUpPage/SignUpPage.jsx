@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import './SignUpPage.css'
 import hive from "../../resources/hiveIcon.png"
 import * as usersService from "../../utilities/users-services";
@@ -16,6 +16,8 @@ export default function SignUpPage({setUser}) {
         profilePic: ""
       });
       const [error, setError] = useState("");
+
+      const navigate = useNavigate()
     
       function handleChange(evt) {
         console.log("CHANGING!")
@@ -33,8 +35,11 @@ export default function SignUpPage({setUser}) {
           const user = await usersService.signUp(credentials);
           setUser(user);
 
-          const back = document.querySelector('.backToHome')
-          back.click()
+          navigate('/')
+
+        //   const back = document.querySelector('.backToHome')
+        //   back.click()
+
           
         } catch (err){
             console.log(err)
@@ -98,9 +103,9 @@ export default function SignUpPage({setUser}) {
                             required
                         />
                     </div>
-                    <Link to = "/" ><button id = "loginButton" type="submit" onClick={handleSubmit} style = {{width: "100%", margin: "5%"}}>Sign Up</button></Link>
+                    <Link to = "/" ><div className = "orangeButton" onClick={handleSubmit} style = {{width: "100%"}}>Sign Up</div></Link>
                 </form>
-                <Link to = "/" ><button id = "loginButton" class = "backToHome" style = {{ width: "100%", marginTop: "25%"}}>Back to home</button></Link>
+                <Link to = "/" ><div className = "orangeButton" style = {{ width: "100%"}}>Back to home</div></Link>
             </div>
         </div>
     </div>

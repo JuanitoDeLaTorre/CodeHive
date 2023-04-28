@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import './LoginPage.css'
 import hive from "../../resources/hiveIcon.png"
 import LoginForm from '../../components/LoginForm/LoginForm'
@@ -15,6 +15,8 @@ export default function LoginPage({setUser}) {
         password: "",
       });
       const [error, setError] = useState("");
+
+      const navigate = useNavigate()
     
       function handleChange(evt) {
         setCredentials({ ...credentials, [evt.target.name]: evt.target.value });
@@ -32,8 +34,9 @@ export default function LoginPage({setUser}) {
           const user = await usersService.login(credentials);
           setUser(user);
 
-            const back = document.querySelector('.backToHome')
-            back.click()
+          navigate('/')
+            // const back = document.querySelector('.backToHome')
+            // back.click()
 
         } catch (err){
             console.log(err)
@@ -71,12 +74,12 @@ export default function LoginPage({setUser}) {
                         onChange={handleChange}
                         required
                     />
-                    <Link to = "/" onClick = {handleSubmit}><button id = "loginButton" type="submit" style = {{width:"100%"}}>LOG IN</button></Link>
+                    <Link to = "/" onClick = {handleSubmit}><div class = "orangeButton" type="submit" style = {{width:"100%"}}>LOG IN</div></Link>
                     
                 </form>
                 <p>{error}</p>
                 <h5 style = {{fontWeight: "400"}}>Not a user yet? <Link to = "/signup" style = {{color: "var(--accentOrange)"}}>Join the hive!</Link></h5>
-                <Link to = "/" ><button id = "loginButton" class = "backToHome" style = {{ width: "100%"}}>Back to home.</button></Link>
+                <Link to = "/" ><div className = "orangeButton"  style = {{ width: "100%"}}>Back to home.</div></Link>
             </div>
         </div>
     </div>

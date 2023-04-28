@@ -73,7 +73,7 @@ function fillAllSnips() {
         <div className="categoryContainer">
             {allSnips.map((cat) => {
               // return <li key = {cat._id}>{cat.name}</li>
-              return <CategoryCard key = {cat._id} cat={cat}/>
+              return <CategoryCard key = {cat._id} profileName = {profileName} user = {user}cat={cat}/>
             })}
         </div>
     </div>

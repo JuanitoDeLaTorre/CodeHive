@@ -77,7 +77,7 @@ export default function LoginPage({setUser}) {
                     <Link to = "/" onClick = {handleSubmit}><div class = "orangeButton" type="submit" style = {{width:"100%"}}>LOG IN</div></Link>
                     
                 </form>
-                <p>{error}</p>
+                <p style = {{color: "rgb(241, 80, 80)"}}>{error}</p>
                 <h5 style = {{fontWeight: "400"}}>Not a user yet? <Link to = "/signup" style = {{color: "var(--accentOrange)"}}>Join the hive!</Link></h5>
                 <Link to = "/" ><div className = "orangeButton"  style = {{ width: "100%"}}>Back to home.</div></Link>
             </div>

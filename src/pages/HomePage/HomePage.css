@@ -1,0 +1,13 @@
+.mainPageTitle {
+    position: relative;
+}
+
+#titleHive {
+    z-index: 0;
+    opacity: 0.2;
+    height: 300px;
+    width: auto;
+    top: 0px;
+    left: 2%;
+    position: absolute;
+}

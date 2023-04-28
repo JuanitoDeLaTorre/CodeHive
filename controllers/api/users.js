@@ -84,7 +84,7 @@ async function fetchForCommunityPage(req, res) {
         userObject["name"] = user.username;
         userObject["profile_pic"] = user.profilePic;
 
-        userObject["user_since"] = new Date(user.createdAt).toDateString();
+        userObject["user_since"] = new Date(user.createdAt).toLocaleDateString();
         const catsForUser = await Category.find({ user: user._id });
 
         let snippetCount = 0;

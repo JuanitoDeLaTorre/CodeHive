@@ -41,7 +41,10 @@ async function remove(req, res) {
 
 async function getAllCatsForUser(req, res) {
   try {
-    const categories = await Category.find({ user: req.params.user_id });
+    const categories = await Category.find({
+      user: req.params.user_id,
+    }).populate("user", "username");
+
     res.json(categories);
   } catch (err) {
     res.status(400).json(err);
@@ -50,8 +53,16 @@ async function getAllCatsForUser(req, res) {
 }
 
 async function fetchOne(req, res) {
-  const category = await Category.findById(req.params.id);
-  res.json(category);
+  try {
+    const category = await Category.findById(req.params.id).populate(
+      "user",
+      "username"
+    );
+    res.json(category);
+  } catch (err) {
+    res.status(400).json(err);
+    console.log(err);
+  }
 }
 
 module.exports = {

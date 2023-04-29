@@ -42,7 +42,7 @@ export default function EditCategoryForm({user}) {
 
   return (
     <div className = "mainContent">
-        <form onSubmit = {handleSubmit} style={{display: "flex", flexDirection: "column", alignItems: "center", gap: '30px'}}>
+        <form onSubmit = {handleSubmit} className='editCategoryForm'>
             <label htmlFor="name">Name</label>
             <input
             type="text"
@@ -58,7 +58,7 @@ export default function EditCategoryForm({user}) {
             value={category.description}
             onChange={handleChange}
             ></textarea>
-            <button type="submit">Submit</button>
+            <button className='orangeButton' type="submit">Submit</button>
   </form>
     </div>
   )

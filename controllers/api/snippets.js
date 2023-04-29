@@ -93,6 +93,22 @@ async function fetchOne(req, res) {
   }
 }
 
+async function copy(req, res) {
+  try {
+    const snippet = await Snippet.findById(req.params.snipID);
+    const newSnippet = await Snippet.create({
+      title: snippet.title,
+      category: req.params.catID,
+      body: snippet.body,
+      description: snippet.description,
+    });
+    res.json(newSnippet);
+  } catch (err) {
+    res.status(400).json(err);
+    console.log(err);
+  }
+}
+
 module.exports = {
   create,
   update,
@@ -101,4 +117,5 @@ module.exports = {
   returnSnipsForUser,
   returnSnipsForCat,
   fetchOne,
+  copy,
 };

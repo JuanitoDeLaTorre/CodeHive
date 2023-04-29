@@ -101,10 +101,7 @@ export default function NewSnippetForm({user}) {
                         
                         >
                         {categories.map((category) => (
-                            category._id === catID ? <option key={category._id} value={category._id} selected>{category.name}</option> : <option key={category._id} value={category._id}>{category.name}</option>
-                            // return <option key={category._id} value={category._id}>
-                            // {category.name}
-                            // </option>
+                            <option key={category._id} value={category._id}>{category.name}</option>  
                         ))}
                         </select>
                     </>

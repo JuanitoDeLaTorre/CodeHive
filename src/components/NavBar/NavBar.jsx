@@ -96,7 +96,7 @@ const NavBar = ({ user, setUser, setSearchResults }) => {
                 <li style={{ color: "var(--accentOrange)", marginLeft: "0" }}>
                   /
                 </li>
-                <Link to="/addSnippetForm">
+                <Link to="/addSnippetForm/1">
                   <li id="navElement">Quick Add +</li>
                 </Link>
                 <li style={{ color: "var(--accentOrange)" }}>/</li>

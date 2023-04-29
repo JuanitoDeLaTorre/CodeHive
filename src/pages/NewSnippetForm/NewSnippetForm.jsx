@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import './NewSnippetForm.css'
 import sendRequest from '../../utilities/send-request';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, useParams } from 'react-router-dom';
 import hljs from "highlight.js";
 
 
@@ -12,13 +12,26 @@ export default function NewSnippetForm({user}) {
     const [description, setDescription] = useState("");
   
     const [categories, setCategories, isLoading] = useState([]);
+    const [incomingCategory, setIncomingCategory] = useState({});
+
+    const {catID} = useParams();
 
     const navigate = useNavigate();
     let formattedText;
   
     useEffect(() => {
       fetchCategories()
+      fetchIncomingCat()
+      console.log(catID)
+     
     }, []);
+
+    async function fetchIncomingCat() {
+        if(catID === "1") return
+        const cat = await sendRequest(`/api/categories/fetchOne/${catID}`, 'GET')
+        setIncomingCategory(cat)
+        setCategory(cat.name)
+    }
 
     async function fetchCategories() {
         const cats = await sendRequest(`/api/categories/fetchCats/${user._id}`, 'GET')
@@ -58,8 +71,13 @@ export default function NewSnippetForm({user}) {
   
     return (
         <div className="mainContent">
-            {isLoading ? <p>HELLO</p> : null}
+            {catID !== "1" ? 
+            
+            <h1>Add new snippet to<span style = {{color: 'var(--accentOrange)'}}> {incomingCategory.name}</span></h1> 
+            :
+            
             <h1>Add new <span style = {{color: 'var(--accentOrange)'}}>snippet</span></h1>
+            }
             {categories.length && !isLoading ?
             <div style={{ textAlign: "center" }}>
                 <form onSubmit={handleSubmit} className='newSnippetForm'>
@@ -74,17 +92,25 @@ export default function NewSnippetForm({user}) {
                 </div>
                 <div >
                     <label htmlFor="category">Category</label>
-                    <select
-                    id="category"
-                    value={category}
-                    onChange={(e) => setCategory(e.target.value)}
-                    >
-                    {categories.map((category) => (
-                        <option key={category._id} value={category._id}>
-                        {category.name}
-                        </option>
-                    ))}
-                    </select>
+                    {catID === "1" ?
+                    <>
+                        <select
+                        id="category"
+                        value={category}
+                        onChange={(e) => setCategory(e.target.value)}
+                        
+                        >
+                        {categories.map((category) => (
+                            category._id === catID ? <option key={category._id} value={category._id} selected>{category.name}</option> : <option key={category._id} value={category._id}>{category.name}</option>
+                            // return <option key={category._id} value={category._id}>
+                            // {category.name}
+                            // </option>
+                        ))}
+                        </select>
+                    </>
+                    :
+                    <p>{incomingCategory.name}</p>
+                    }
                 </div>
                 <div>
                     <label htmlFor="body">Code</label>
@@ -118,48 +144,4 @@ export default function NewSnippetForm({user}) {
             }
         </div>
     );
-
-
-
-
-
-
-
-    // const [snippet, setSnippet] = useState("");
-
-    // let formattedText = ''
-
-    // const handlePaste = (e) => {
-    //   const text = e.target.textContent;
-    //     formattedText = text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-    //   setSnippet(formattedText);
-    // };
-    
-    // // const save = () => {
-    // //   const collection = db.collection("snippets");
-    // //   const doc = {
-    // //     snippet: snippet,
-    // //   };
-    // //   collection.insertOne(doc);
-    // // };
-    
-    // const handleChange = (e) => {
-    //   formattedText = e.target.value.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-    //   setSnippet(formattedText);
-    // };
-    
-    // return (
-    //   <div className = "mainContent">
-    //     <textarea
-    //       id="snippet"
-    //       value={snippet}
-    //       onChange={handleChange}
-    //     ></textarea>
-    //     {/* <p>{snippet}</p> */}
-    //     <pre style = {{textAlign: "left", margin: "0px"}}>
-    //         {snippet}
-    //     </pre>
-    //     {/* <button type="submit" onClick={save}>Save</button> */}
-    //   </div>
-    // );
 }

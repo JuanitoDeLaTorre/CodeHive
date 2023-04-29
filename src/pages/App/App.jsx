@@ -70,7 +70,7 @@ function App() {
             </>} 
             />  
             {/* ADD SNIPPET FORM */}
-            <Route path="/addSnippetForm" element={
+            <Route path="/addSnippetForm/:catID" element={
             <>
               <NavBar setSearchResults={setSearchResults} user={user} setUser={setUser}/>
               <NewSnippetForm user={user}/>

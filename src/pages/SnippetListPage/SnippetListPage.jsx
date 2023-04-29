@@ -35,6 +35,7 @@ export default function SnippetListPage({user}) {
   return (
     <div className='mainContent'>
       <h1>{cat.name}</h1>
+      {cat.user === user._id ? <Link to = {`/addSnippetForm/${catID}`}><div className="orangeButton">ADD SNIPPET</div> </Link>: null}
       <div style = {{display: 'flex', flexWrap: 'wrap'}}>
         {allSnips.map((snippet) => {
           return <SnippetCard key = {snippet._id} snippet = {snippet} user = {user}/> 

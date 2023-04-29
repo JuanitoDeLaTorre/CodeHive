@@ -1,6 +1,9 @@
 import React, {useState, useEffect} from 'react'
 import { Link, useParams, useNavigate } from 'react-router-dom'
 import sendRequest from '../../utilities/send-request';
+import './EditCategoryForm.css'
+
+
 
 export default function EditCategoryForm({user}) {
 

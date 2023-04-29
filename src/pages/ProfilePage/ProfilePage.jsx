@@ -119,6 +119,8 @@ export default function Profile({ user }) {
           <p> total snippets: {allSnipsIndividual.length}</p>
         </div>
       </div>
+
+      
       <hr />
       {allSnips.length === 0 ? (
         <p

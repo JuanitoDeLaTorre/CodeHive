@@ -1,0 +1,37 @@
+.editCategoryForm {
+  max-width: 50%;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #04121f;
+}
+
+.editCategoryForm label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #f8cb00;
+}
+
+.editCategoryForm input,
+.editCategoryForm select,
+.editCategoryForm textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.editCategoryForm textarea {
+  height: 200px;
+}
+
+.editCategoryForm button {
+  background-color: #4f5d75;
+  font-weight: bold;
+  font-size: 27px;
+}

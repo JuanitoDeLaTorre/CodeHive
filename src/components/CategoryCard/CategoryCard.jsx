@@ -18,9 +18,9 @@ export default function CategoryCard({cat, user, profileName}) {
             <p>{cat.description}</p>
             <p>Number of snippets: {cat.snips.length}</p>
             {profileName === user.username ?
-                <div style = {{display: 'flex', justifyContent: 'center', gap: '10px'}}>
-                    <Link to = {`/bins-edit/${cat._id}`}><button>EDIT</button></Link>
-                    <button onClick={handleDelete}>DELETE </button>
+                <div >
+                    <Link to = {`/bins-edit/${cat._id}`}><button className='orangeButton'>EDIT</button></Link>
+                    <button className='orangeButton' onClick={handleDelete}>DELETE </button>
                 </div>
                 :
                 null}

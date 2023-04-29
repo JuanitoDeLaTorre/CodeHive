@@ -78,50 +78,52 @@ export default function Profile({ user }) {
           <div className="orangeButton">ADD BIN</div>
         </Link>
       ) : null}
-      <div
-        id="profileCard"
-        style={{ position: "absolute", top: "80px", left: "155px" }}
-      >
-        <div style={{ display: "flex", justifyContent: "left", gap: "5%" }}>
-          <img id="profilePicCard" src={user.profile_pic} alt="" />
-          <h4
+
+      {profileName === user.username ? (
+        <div
+          id="profileCard"
+          style={{ position: "absolute", top: "80px", left: "155px" }}
+        >
+          <div style={{ display: "flex", justifyContent: "left", gap: "5%" }}>
+            <img id="profilePicCard" src={user.profile_pic} alt="" />
+            <h4
+              style={{
+                fontWeight: "200",
+                textAlign: "left",
+                marginTop: "5px",
+                marginBottom: "5px",
+              }}
+            >
+              {user.username}
+            </h4>
+          </div>
+          <p
             style={{
               fontWeight: "200",
               textAlign: "left",
-              marginTop: "5px",
-              marginBottom: "5px",
+              color: "rgb(201, 201, 201)",
+              fontSize: "15px",
+              marginTop: "10px",
             }}
           >
-            {user.username}
-          </h4>
+            User since: {new Date(user.createdAt).toLocaleDateString()}
+          </p>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              marginTop: "20px",
+              marginBottom: "20px",
+              alignItems: "center",
+              fontSize: "0.9em",
+            }}
+          >
+            <p> total snippets: {allSnipsIndividual.length}</p>
+          </div>
         </div>
-        <p
-          style={{
-            fontWeight: "200",
-            textAlign: "left",
-            color: "rgb(201, 201, 201)",
-            fontSize: "15px",
-            marginTop: "10px",
-          }}
-        >
-          User since: {new Date(user.createdAt).toLocaleDateString()}
-        </p>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            marginTop: "20px",
-            marginBottom: "20px",
-            alignItems: "center",
-            fontSize: "0.9em",
-          }}
-        >
-          <p> total snippets: {allSnipsIndividual.length}</p>
-        </div>
-      </div>
+      ) : null}
 
-      
-      <hr />
+      <hr style={{ marginTop: "20px" }} />
       {allSnips.length === 0 ? (
         <p
           style={{

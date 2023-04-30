@@ -40,10 +40,10 @@ header ul li {
   font-family: inherit;
   width: 80%;
   height: 30px;
-  padding: 10px;
+  padding: 17px;
   border: solid var(--paynes) 1px;
   background-color: var(--white);
-  border-radius: 5px;
+  border-radius: 25px;
   transition: all 300ms ease-in-out;
   outline: none;
   color: var(--gunmetal);

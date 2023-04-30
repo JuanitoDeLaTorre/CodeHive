@@ -21,6 +21,21 @@ async function create(req, res) {
   }
 }
 
+async function update(req, res) {
+  try {
+    console.log(req.params.id);
+    console.log(req.body);
+    const newUser = await User.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    });
+    console.log(newUser);
+    res.json(newUser);
+  } catch (err) {
+    res.status(400).json(err);
+    console.log(err);
+  }
+}
+
 async function login(req, res) {
   try {
     const user = await User.findOne({ email: req.body.email });
@@ -84,7 +99,9 @@ async function fetchForCommunityPage(req, res) {
         userObject["name"] = user.username;
         userObject["profile_pic"] = user.profilePic;
 
-        userObject["user_since"] = new Date(user.createdAt).toLocaleDateString();
+        userObject["user_since"] = new Date(
+          user.createdAt
+        ).toLocaleDateString();
         const catsForUser = await Category.find({ user: user._id });
 
         let snippetCount = 0;
@@ -122,4 +139,5 @@ module.exports = {
   fetchOneUser,
   fetchOneById,
   fetchForCommunityPage,
+  update,
 };

@@ -13,11 +13,19 @@ export default function Profile({ user }) {
   const profileName = useParams().name;
 
   async function getUserProfile() {
+    let returnUser;
     if (!profileName) return;
-    const returnUser = await sendRequest(
-      `/api/users/fetchOneUser/${profileName}`,
-      "GET"
-    );
+    if(profileName === user.username) {
+      returnUser = await sendRequest(
+        `/api/users/fetchOneUser/${user.username}`,
+        "GET"
+      );
+    } else {
+      returnUser = await sendRequest(
+        `/api/users/fetchOneUser/${profileName}`,
+        "GET"
+      );
+    }
     setUserProfile(returnUser);
   }
 
@@ -46,6 +54,7 @@ export default function Profile({ user }) {
   }
 
   useEffect(() => {
+    setUserProfile([])
     getUserProfile();
     setAllSnips([]);
     setAllSnipsIndividual([]);
@@ -85,7 +94,7 @@ export default function Profile({ user }) {
           style={{ position: "absolute", top: "80px", left: "155px" }}
         >
           <div style={{ display: "flex", justifyContent: "left", gap: "5%" }}>
-            <img id="profilePicCard" src={user.profile_pic} alt="" />
+            <img id="profilePicCard" src={user.profilePic} alt="" />
             <h4
               style={{
                 fontWeight: "200",

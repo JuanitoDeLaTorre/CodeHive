@@ -19,6 +19,8 @@ async function create(req, res) {
 
 async function update(req, res) {
   try {
+    console.log("THIS IS THE BODY", req.body);
+    console.log("THIS IS THE ID", req.params.id);
     const snippet = await Snippet.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
     });

@@ -54,10 +54,7 @@ async function getAllCatsForUser(req, res) {
 
 async function fetchOne(req, res) {
   try {
-    const category = await Category.findById(req.params.id).populate(
-      "user",
-      "username"
-    );
+    const category = await Category.findById(req.params.id);
     res.json(category);
   } catch (err) {
     res.status(400).json(err);

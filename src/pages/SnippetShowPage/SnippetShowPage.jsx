@@ -82,7 +82,7 @@ export default function SnippetShowPage({user}) {
         <h1>{snip.title}</h1>
         <div>
             <h3 style = {{color: 'var(--accentOrange'}}>Category</h3>
-            <p>{cat.name}</p>
+            <p><Link to = {`/snippets-list/${cat._id}`}>{cat.name}</Link></p>
         </div>
         <h3 style = {{color: 'var(--accentOrange'}}>Code</h3>
         <div id="codeContainer" style = {{marginLeft: '18%', border: 'solid white 2px', borderRadius: '10px', padding: '10px', width: '50vw', overflow: 'scroll'}}>

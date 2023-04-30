@@ -5,7 +5,6 @@ import "./ResultPage.css";
 export default function ResultPage({ user, searchResults }) {
   const { users = [], categories = [], snippets = [] } = searchResults;
 
-
   const hideEmptyResults = (name, value) => {
     const resultElement = document.querySelector(`#result${name}`);
     if (value.length === 0 && resultElement) {
@@ -17,7 +16,7 @@ export default function ResultPage({ user, searchResults }) {
     hideEmptyResults("category", categories);
     hideEmptyResults("snippet", snippets);
   }, [users, categories, snippets]);
-  console.log(categories)
+  console.log(categories);
 
   return (
     <div className="resultMainContent">
@@ -43,12 +42,13 @@ export default function ResultPage({ user, searchResults }) {
             <h2>Bins</h2>
             {categories.map((categoryLoop) => (
               <Link to={`/snippets-list/${categoryLoop._id}`}>
-                  <div className="resultCard" key={categoryLoop._id}>
+                <div className="resultCard" key={categoryLoop._id}>
                   <h3>{categoryLoop.name}</h3>
-                  <p>Created by:</p>
+                  
+                  <p>Created by: {categoryLoop.user.username}</p>
                   <p>{categoryLoop.description}</p>
-              </div>
-                </Link>
+                </div>
+              </Link>
             ))}
           </div>
         )}
@@ -57,11 +57,11 @@ export default function ResultPage({ user, searchResults }) {
             <h2>Snippets</h2>
             {snippets.map((snippetLoop) => (
               <Link to={`/snippets-show/${snippetLoop._id}`}>
-                  <div className="resultCard" key={snippetLoop._id}>
+                <div className="resultCard" key={snippetLoop._id}>
                   <h3>{snippetLoop.title}</h3>
                   <p>{snippetLoop.description}</p>
-              </div>
-                </Link>
+                </div>
+              </Link>
             ))}
           </div>
         )}

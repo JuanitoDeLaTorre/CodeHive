@@ -4,11 +4,13 @@ import "./ProfilePage.css";
 import sendRequest from "../../utilities/send-request";
 import CategoryCard from "../../components/CategoryCard/CategoryCard";
 import hiveBadge from "../../resources/bee-hive (2).png";
+import ripple from "../../resources/ripple.svg";
 
 export default function Profile({ user }) {
   const [allSnips, setAllSnips] = useState([]);
   const [allSnipsIndividual, setAllSnipsIndividual] = useState([]);
   const [userProfile, setUserProfile] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
 
   const profileName = useParams().name;
 
@@ -51,6 +53,7 @@ export default function Profile({ user }) {
         setAllSnipsIndividual((current) => [...current, allSnips[i].snips[j]]);
       }
     }
+    setIsLoading(false);
   }
 
   useEffect(() => {
@@ -127,13 +130,15 @@ export default function Profile({ user }) {
               fontSize: "0.9em",
             }}
           >
-            <p> Snippets: {allSnipsIndividual.length}</p>
+            <p> Total snippets: {allSnipsIndividual.length}</p>
           </div>
         </div>
       ) : null}
 
+
       <hr style={{ marginTop: "20px" }} />
-      {allSnips.length === 0 && profileName === user.username ? (
+      {isLoading && <img src={ripple} alt="" />}
+      {allSnips.length === 0 && profileName === user.username && !isLoading ? (
         <p
           style={{
             textAlign: "center",

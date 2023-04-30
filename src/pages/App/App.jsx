@@ -21,6 +21,7 @@ import HomePage from "../HomePage/HomePage";
 import ProfileEditPage from "../ProfileEditPage/ProfileEditPage";
 
 import "highlight.js/styles/atom-one-dark.css";
+import Page404 from "../Page404/Page404";
 
 
 
@@ -122,6 +123,13 @@ function App() {
             <>
               <NavBar setSearchResults={setSearchResults} user={user} setUser={setUser}/>
               <ResultPage searchResults={searchResults} user={user}/>
+            </>} 
+            /> 
+            {/* 404 PAGE */}
+            <Route path="*" element={
+            <>
+              <NavBar setSearchResults={setSearchResults} user={user} setUser={setUser}/>
+              <Page404 />
             </>} 
             /> 
       </Routes>

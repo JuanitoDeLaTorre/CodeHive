@@ -6,7 +6,9 @@ import sendRequest from '../../utilities/send-request'
 export default function EditSnippetForm({user}) {
 
     const [snippet, setSnippet] = useState({})
+    const [categories, setCategories] = useState([])
     const {snipID} = useParams();
+
 
     const navigate = useNavigate()
 
@@ -30,19 +32,19 @@ export default function EditSnippetForm({user}) {
         navigate(`/snippets-show/${snipID}`)
       }
 
-    //   const handleInput = (e) => {
-    //     const textarea = e.target;
-    //     const height = textarea.scrollHeight + 16;
-    //     textarea.style.height = height + "px";
-    //   };
+    async function fetchCategories() {
+      const cats = await sendRequest(`/api/categories/fetchCats/${user._id}`, 'GET')
+      setCategories(cats)
+  }
 
     useEffect(() => {
         fetchSnip()
+        fetchCategories()
     },[])
 
   return (
     <div className = "mainContent">
-        <form onSubmit={handleSubmit} style={{display: "flex", flexDirection: "column", alignItems: 'center', gap: '20px'}}>
+        <form className='editCategoryForm' >
             <label htmlFor="title">Title</label>
             <input
             type="text"
@@ -51,30 +53,37 @@ export default function EditSnippetForm({user}) {
             value={snippet?.title}
             onChange={handleChange}
             />
-            <label htmlFor="category">Category</label>
-            <input
-            type="text"
-            name="category"
-            placeholder="Category"
-            value={snippet?.category}
-            onChange={handleChange}
-            />
+            <div >
+                <label htmlFor="category">Category</label>
+                    <select
+                    id="category"
+                    name = "category"
+                    value={snippet.category}
+                    onChange={handleChange}
+                    
+                    >
+                    {categories.map((category) => (
+                        <option key={category._id} value={category._id}>{category.name}</option>  
+                    ))}
+                    </select>
+
+                </div>
             <label htmlFor="body">Body</label>
             <textarea
-            name="body"
-            placeholder="Body"
-            value={snippet?.body}
-            onChange={handleChange}
-            // onInput={handleInput}
-            ></textarea>
+              name="body"
+              placeholder="Body"
+              value={snippet?.body}
+              onChange={handleChange}
+              // onInput={handleInput}
+              ></textarea>
             <label htmlFor="description">Description</label>
-            <textarea
-            name="description"
-            placeholder="Description"
-            value={snippet?.description}
-            onChange={handleChange}
-            ></textarea>
-            <button type="submit">Submit</button>
+            <input
+              name="description"
+              placeholder="Description"
+              value={snippet?.description}
+              onChange={handleChange}
+            ></input>
+            <div className = "orangeButton" onClick={handleSubmit}>Submit</div>
   </form>
     </div>
   )

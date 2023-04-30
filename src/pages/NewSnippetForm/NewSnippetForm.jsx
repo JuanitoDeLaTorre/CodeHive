@@ -30,7 +30,7 @@ export default function NewSnippetForm({user}) {
         if(catID === "1") return
         const cat = await sendRequest(`/api/categories/fetchOne/${catID}`, 'GET')
         setIncomingCategory(cat)
-        setCategory(cat.name)
+        setCategory(cat._id)
     }
 
     async function fetchCategories() {

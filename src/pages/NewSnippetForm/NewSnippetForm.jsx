@@ -118,6 +118,7 @@ export default function NewSnippetForm({user}) {
                     onInput={handleInput2}
                     autoFocus = 'autofocus'
                     tabIndex='-1'
+                    style = {{backgroundColor: 'var(--paynesGray)', color: 'white'}}
                     ></textarea>
                 </div>
                 <div>

@@ -90,9 +90,9 @@ const NavBar = ({ user, setUser, setSearchResults }) => {
             {user ? (
               <>
                 <li style={{ color: "var(--accentOrange)" }}>/</li>
-                <Link to={`/profile/${user.username}`}>
-                  <li id="navElement">Your Bins</li>
-                </Link>
+                {/* <Link to={`/profile/${user.username}`}> */}
+                 <a href={`/profile/${user.username}`}><li id="navElement">Your Bins</li></a> 
+                {/* </Link> */}
                 <li style={{ color: "var(--accentOrange)", marginLeft: "0" }}>
                   /
                 </li>
@@ -100,14 +100,18 @@ const NavBar = ({ user, setUser, setSearchResults }) => {
                   <li id="navElement">Quick Add +</li>
                 </Link>
                 <li style={{ color: "var(--accentOrange)" }}>/</li>
-                <Link to="/">
-                  <li id="navElement" onClick={handleLogout}>
-                    Logout,{" "}
-                    <span style={{ color: "var(--accentOrange)" }}>
-                      {user.username}
-                    </span>
-                  </li>
-                </Link>
+                <div style = {{display: 'flex', justifyContent: 'center', alignItems: 'center', gap : "10px"}}>
+                  <Link to = "/profileEdit"><img src = {user.profilePic} title = "Edit Profile" id = "profilePicCard"/></Link>
+                  <Link to="/">
+                    <li id="navElement" onClick={handleLogout}>
+                      Logout,{" "}
+                      <span style={{ color: "var(--accentOrange)" }}>
+                        {user.username}
+                      </span>
+                    </li>
+                  </Link>
+
+                </div>
               </>
             ) : (
               <Link to="/signin">

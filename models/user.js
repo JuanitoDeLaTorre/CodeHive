@@ -23,7 +23,8 @@ const userSchema = new Schema(
     profilePic: {
       type: String,
       trim: true,
-      default: "",
+      default:
+        "https://images.unsplash.com/photo-1516259762381-22954d7d3ad2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2089&q=80",
     },
     communityPref: {
       type: Boolean,

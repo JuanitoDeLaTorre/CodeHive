@@ -5,6 +5,7 @@ const ensureLoggedIn = require("../../config/ensureLoggedIn");
 
 router.get("/check-token", ensureLoggedIn, usersCtrl.checkToken);
 router.post("/", usersCtrl.create);
+router.put("/update/:id", usersCtrl.update);
 router.post("/login", usersCtrl.login);
 router.get("/fetchUsers", usersCtrl.fetchUsers);
 router.get("/fetchOneUser/:username", usersCtrl.fetchOneUser);

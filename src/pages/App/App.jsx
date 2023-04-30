@@ -18,6 +18,7 @@ import ResultPage from "../ResultPage/ResultPage";
 import EditSnippetForm from "../EditSnippetForm/EditSnippetForm";
 import EditCategoryForm from "../EditCategoryForm/EditCategoryForm";
 import HomePage from "../HomePage/HomePage";
+import ProfileEditPage from "../ProfileEditPage/ProfileEditPage";
 
 import "highlight.js/styles/atom-one-dark.css";
 
@@ -60,6 +61,13 @@ function App() {
             <>
               <NavBar setSearchResults={setSearchResults} user={user} setUser={setUser}/>
               <ProfilePage user={user}/>
+            </>} 
+            />  
+            {/* PROFILE EDITROUTE */}
+            <Route path="/profileEdit" element={
+            <>
+              <NavBar setSearchResults={setSearchResults} user={user} setUser={setUser}/>
+              <ProfileEditPage user={user}/>
             </>} 
             />  
             {/* ADD CATEGORY FORM */}

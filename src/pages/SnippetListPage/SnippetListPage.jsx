@@ -41,6 +41,13 @@ export default function SnippetListPage({user}) {
           return <SnippetCard key = {snippet._id} snippet = {snippet} user = {user}/> 
         })}
       </div>
+      {allSnips.length === 0 ? 
+      <>
+        <hr />
+        <h3>Hmm...looks like you haven't added snippets to this bin yet! </h3>
+        <h3>Click the above button to add some! 👆</h3>
+      </>
+      : null}
     </div>
   )
 }

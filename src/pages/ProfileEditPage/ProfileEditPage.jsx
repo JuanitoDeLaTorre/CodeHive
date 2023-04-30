@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import sendRequest from '../../utilities/send-request'
 
-export default function ProfileEditPage({user}) {
+export default function ProfileEditPage({user, setUser}) {
 
     const [profilePic, setProfilePic] = useState('')
     const [name, setName] = useState('')
@@ -20,9 +20,9 @@ export default function ProfileEditPage({user}) {
         const updateUser = await sendRequest(`api/users/update/${user._id}`, 'PUT', 
         userChange,
         )
-        console.log(updateUser)
+        setUser(updateUser)
 
-        // navigate(`/profile/${user.username}`)
+        navigate(`/profile/${updateUser.username}`)
     }
 
     const handleChange = (e) => {

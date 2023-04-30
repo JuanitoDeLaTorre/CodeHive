@@ -74,6 +74,29 @@ header ul li {
   width: auto;
 }
 
+#profilePicContainer:hover #tagHover {
+  opacity: 1;
+}
+
+#tagHover {
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: -60%;
+  top: 90%;
+  content: '';
+  height: 20px;
+  width: 70px;
+  background-color: var(--gunmetal);
+  color: white;
+  border-radius: 3px;
+  font-size: 0.6em;
+  padding: 3px;
+  transition: all 300ms ease-in-out;
+}
+
 #navElement {
   transition: all 300ms ease-in-out;
   position: relative;

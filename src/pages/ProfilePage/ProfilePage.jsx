@@ -127,22 +127,22 @@ export default function Profile({ user }) {
               fontSize: "0.9em",
             }}
           >
-            <p> total snippets: {allSnipsIndividual.length}</p>
+            <p> Snippets: {allSnipsIndividual.length}</p>
           </div>
         </div>
       ) : null}
 
       <hr style={{ marginTop: "20px" }} />
-      {allSnips.length === 0 ? (
+      {allSnips.length === 0 && profileName === user.username ? (
         <p
           style={{
             textAlign: "center",
-            color: "var(--accentOrange",
+            color: "var(--accentOrange)",
             fontSize: "25px",
           }}
         >
-          Oopsie! It looks like this bee hive is a little empty. Click on the
-          adorable 'Add Bin' button to give these bees a new home 🐝🏠🌸
+          Whoops! It looks like this hive is a little empty. Click on the
+          'Add Bin' button to give these bees a new home 🐝🏠🌸
         </p>
       ) : (
         <div className="categoryContainer">

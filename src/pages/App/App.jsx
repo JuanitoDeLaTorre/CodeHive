@@ -63,11 +63,11 @@ function App() {
               <ProfilePage user={user}/>
             </>} 
             />  
-            {/* PROFILE EDITROUTE */}
+            {/* PROFILE EDIT ROUTE */}
             <Route path="/profileEdit" element={
             <>
               <NavBar setSearchResults={setSearchResults} user={user} setUser={setUser}/>
-              <ProfileEditPage user={user}/>
+              <ProfileEditPage user={user} setUser = {setUser}/>
             </>} 
             />  
             {/* ADD CATEGORY FORM */}

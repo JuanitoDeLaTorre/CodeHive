@@ -14,9 +14,10 @@ export default function CategoryCard({cat, user, profileName}) {
   return (
     <Link to = {`/snippets-list/${cat._id}`}>
         <div className='categoryCard'>
-            <h4>{cat.name}</h4>
+            <h4 style = {{margin: '4%'}}>-{cat.name}-</h4>
+            <hr style = {{margin: '0'}}/>
             <p>{cat.description}</p>
-            <p>Number of snippets: {cat.snips.length}</p>
+            <p># of snippets: {cat.snips.length}</p>
             {profileName === user.username ?
                 <div >
                     <Link to = {`/bins-edit/${cat._id}`}><button className='orangeButton'>EDIT</button></Link>

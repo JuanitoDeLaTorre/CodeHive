@@ -100,8 +100,11 @@ const NavBar = ({ user, setUser, setSearchResults }) => {
                   <li id="navElement">Quick Add +</li>
                 </Link>
                 <li style={{ color: "var(--accentOrange)" }}>/</li>
-                <div style = {{display: 'flex', justifyContent: 'center', alignItems: 'center', gap : "10px"}}>
-                  <Link to = "/profileEdit"><img src = {user.profilePic} title = "Edit Profile" id = "profilePicCard"/></Link>
+                <div id = "profilePicContainer" style = {{display: 'flex', justifyContent: 'center', alignItems: 'center', gap : "10px"}}>
+                  <div style = {{position: 'relative'}}>
+                    <Link to = "/profileEdit"><img src = {user.profilePic} id = "profilePicCard"/></Link>
+                    <div id = "tagHover">Edit Profile</div>
+                  </div>
                   <Link to="/">
                     <li id="navElement" onClick={handleLogout}>
                       Logout,{" "}

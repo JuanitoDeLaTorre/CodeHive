@@ -26,17 +26,13 @@ export default function LoginPage({setUser}) {
       async function handleSubmit(evt) {
         // Prevent form from being submitted to the server
         evt.preventDefault();
-        // evt.stopPropagation();
         try {
-          // The promise returned by the signUp service method
-          // will resolve to the user object included in the
-          // payload of the JSON Web Token (JWT)
+          
           const user = await usersService.login(credentials);
           setUser(user);
 
           navigate('/')
-            // const back = document.querySelector('.backToHome')
-            // back.click()
+       
 
         } catch (err){
             console.log(err)
@@ -74,7 +70,7 @@ export default function LoginPage({setUser}) {
                         onChange={handleChange}
                         required
                     />
-                    <Link to = "/" onClick = {handleSubmit}><div class = "orangeButton" type="submit" style = {{width:"100%"}}>LOG IN</div></Link>
+                    <Link to = "/" onClick = {handleSubmit}><div className = "orangeButton" type="submit" style = {{width:"100%"}}>LOG IN</div></Link>
                     
                 </form>
                 <p style = {{color: "rgb(241, 80, 80)"}}>{error}</p>

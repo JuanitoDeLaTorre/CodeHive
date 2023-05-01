@@ -7,6 +7,7 @@ export default function SnippetListPage({user}) {
 
   const [allSnips, setAllSnips] = useState([])
   const [cat, setCat] = useState({})
+  const [catUser, setCatUser] = useState({})
 
 
 
@@ -22,6 +23,12 @@ export default function SnippetListPage({user}) {
     const returnCat = await sendRequest(`/api/categories/fetchOne/${catID}`, 'GET')
     setCat(returnCat)
   }
+
+  async function fetchUser() {
+    const returnUser = await sendRequest(`/api/users/fetchOneById/${cat.user}`, 'GET')
+    console.log(returnUser)
+    setCatUser(returnUser)
+  }
   
 
   useEffect(() => {
@@ -30,11 +37,13 @@ export default function SnippetListPage({user}) {
 
   useEffect(() => {
     fetchSnips()
+    fetchUser()
   },[cat])
 
   return (
     <div className='mainContent'>
       <h1>{cat.name}</h1>
+      <h4>Created by <span style = {{color: 'var(--accentOrange)'}}>{catUser.username}</span></h4>
       {cat.user === user._id ? <Link to = {`/addSnippetForm/${catID}`}><div className="orangeButton">ADD SNIPPET</div> </Link>: null}
       <div style = {{display: 'flex', flexWrap: 'wrap'}}>
         {allSnips.map((snippet) => {

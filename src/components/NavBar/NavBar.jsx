@@ -11,6 +11,17 @@ const NavBar = ({ user, setUser, setSearchResults }) => {
   const [results, setResults] = useState([]);
 
   const navigate = useNavigate();
+
+
+  document.addEventListener('keydown', (event) => {
+
+    if(event.key === 'Enter' && query.length > 0) {
+      handleSearch(event)
+    }
+})
+
+
+
   async function handleSearch(event) {
     event.preventDefault();
     const response = await sendRequest(`/api/search/${query}`, "GET");
@@ -100,8 +111,8 @@ const NavBar = ({ user, setUser, setSearchResults }) => {
                   <li id="navElement">Quick Add +</li>
                 </Link>
                 <li style={{ color: "var(--accentOrange)" }}>/</li>
-                <div id = "profilePicContainer" style = {{display: 'flex', justifyContent: 'center', alignItems: 'center', gap : "10px"}}>
-                  <div style = {{position: 'relative'}}>
+                <div  style = {{display: 'flex', justifyContent: 'center', alignItems: 'center', gap : "10px"}}>
+                  <div id = "profilePicContainer" style = {{position: 'relative'}}>
                     <Link to = "/profileEdit"><img src = {user.profilePic} id = "profilePicCard"/></Link>
                     <div id = "tagHover">Edit Profile</div>
                   </div>

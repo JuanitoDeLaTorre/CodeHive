@@ -70,6 +70,7 @@ export default function EditSnippetForm({user}) {
                 </div>
             <label htmlFor="body">Body</label>
             <textarea
+              style = {{backgroundColor: "var(--gunmental)", color: "white"}}
               name="body"
               placeholder="Body"
               value={snippet?.body}

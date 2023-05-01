@@ -19,7 +19,7 @@ export default function ResultPage({ user, searchResults }) {
   console.log(categories);
 
   return (
-    <div className="resultMainContent">
+    <div className="mainContent">
       <div className="resultPageContainer">
         {users.length > 0 && (
           <div id="resultuser" className="resultPageSection">

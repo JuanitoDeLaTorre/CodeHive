@@ -25,15 +25,18 @@ export default function ResultPage({ user, searchResults }) {
           <div id="resultuser" className="resultPageSection">
             <h2>Users</h2>
             {users.map((userLoop) => (
-              <Link to={`/profile/${userLoop.username}`}>
-                <div className="resultCard" key={userLoop._id}>
-                  <h3>{userLoop.username}</h3>
-                  <p>{userLoop.bio}</p>
-                  <p>
-                    Created on: {new Date(userLoop.createdAt).toDateString()}
-                  </p>
-                </div>
-              </Link>
+              <div className="resultCard" key={userLoop._id}>
+                <h3>{userLoop.username}</h3>
+                <p>{userLoop.bio}</p>
+                <p>
+                  Created on: {new Date(userLoop.createdAt).toDateString()}
+                </p>
+                {user ? (
+                  <Link to={`/profile/${userLoop.username}`}>View profile</Link>
+                ) : (
+                  <span>View profile</span>
+                )}
+              </div>
             ))}
           </div>
         )}
@@ -41,14 +44,16 @@ export default function ResultPage({ user, searchResults }) {
           <div id="resultcategory" className="resultPageSection">
             <h2>Bins</h2>
             {categories.map((categoryLoop) => (
-              <Link to={`/snippets-list/${categoryLoop._id}`}>
-                <div className="resultCard" key={categoryLoop._id}>
-                  <h3>{categoryLoop.name}</h3>
-                  
-                  <p>Created by: {categoryLoop.user.username}</p>
-                  <p>{categoryLoop.description}</p>
-                </div>
-              </Link>
+              <div className="resultCard" key={categoryLoop._id}>
+                <h3>{categoryLoop.name}</h3>
+                <p>Created by: {categoryLoop.user.username}</p>
+                <p>{categoryLoop.description}</p>
+                {user ? (
+                  <Link to={`/snippets-list/${categoryLoop._id}`}>View snippets</Link>
+                ) : (
+                  <span>View snippets</span>
+                )}
+              </div>
             ))}
           </div>
         )}
@@ -56,12 +61,15 @@ export default function ResultPage({ user, searchResults }) {
           <div id="resultsnippet" className="resultPageSection">
             <h2>Snippets</h2>
             {snippets.map((snippetLoop) => (
-              <Link to={`/snippets-show/${snippetLoop._id}`}>
-                <div className="resultCard" key={snippetLoop._id}>
-                  <h3>{snippetLoop.title}</h3>
-                  <p>{snippetLoop.description}</p>
-                </div>
-              </Link>
+              <div className="resultCard" key={snippetLoop._id}>
+                <h3>{snippetLoop.title}</h3>
+                <p>{snippetLoop.description}</p>
+                {user ? (
+                  <Link to={`/snippets-show/${snippetLoop._id}`}>View snippet</Link>
+                ) : (
+                  <span>View snippet</span>
+                )}
+              </div>
             ))}
           </div>
         )}

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 import './NewSnippetForm.css'
 import sendRequest from '../../utilities/send-request';
 import { useNavigate, Link, useParams } from 'react-router-dom';
@@ -17,14 +17,16 @@ export default function NewSnippetForm({user}) {
     const {catID} = useParams();
 
     const navigate = useNavigate();
+    const textField = document.getElementById("body");
+
     let formattedText;
   
     useEffect(() => {
       fetchCategories()
       fetchIncomingCat()
-      console.log(catID)
-     
+        
     }, []);
+
 
     async function fetchIncomingCat() {
         if(catID === "1") return
@@ -36,6 +38,7 @@ export default function NewSnippetForm({user}) {
     async function fetchCategories() {
         const cats = await sendRequest(`/api/categories/fetchCats/${user._id}`, 'GET')
         setCategories(cats)
+        setCategory(cats[0]._id)
     }
 
     const handleChange = (e) => {
@@ -57,17 +60,36 @@ export default function NewSnippetForm({user}) {
       navigate(`/profile/${user.username}`)
     }
 
-    function handleInput2(e) {
-        if (e.key === 'Tab' && !e.shiftKey) {
-            e.preventDefault();
-          } else if (e.key === 'Tab' && e.shiftKey) {
-            e.preventDefault();
-            var start = this.selectionStart;
-            var end = this.selectionEnd;
-            this.value = this.value.substring(0, start) + '     ' + this.value.substring(end);
-            this.selectionStart = this.selectionEnd = start + 5;
-          }
+
+
+    const textFieldRef = useRef(null);
+
+  useEffect(() => {
+    const textField = textFieldRef.current;
+
+    if (textField) {
+      textField.addEventListener("keydown", handleKeyDown);
+
+      return () => {
+        textField.removeEventListener("keydown", handleKeyDown);
+      };
     }
+  }, [textFieldRef]);
+
+  function handleKeyDown(event) {
+    if (event.key === "Tab") {
+      event.preventDefault();
+      const { selectionStart, selectionEnd } = event.target;
+      const valueBeforeCursor = event.target.value.slice(0, selectionStart);
+      const valueAfterCursor = event.target.value.slice(selectionEnd);
+      event.target.value = valueBeforeCursor + "\t" + valueAfterCursor;
+      event.target.selectionStart = selectionStart + 1;
+      event.target.selectionEnd = selectionStart + 1;
+    }
+  }
+
+
+        
   
     return (
         <div className="mainContent">
@@ -114,8 +136,9 @@ export default function NewSnippetForm({user}) {
                     <textarea
                     id="body"
                     value={body}
+                    ref = {textFieldRef}
                     onChange={handleChange}
-                    onInput={handleInput2}
+                    // onInput={handleInput2}
                     autoFocus = 'autofocus'
                     tabIndex='-1'
                     style = {{backgroundColor: 'var(--paynesGray)', color: 'white'}}

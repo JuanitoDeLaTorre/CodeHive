@@ -92,13 +92,15 @@ export default function SnippetShowPage({user}) {
                     {snip.body}
                 </code>
             </pre>
-        </div>
         {!copied ? 
-        <div onClick={copyCode} className="orangeButton">Copy Code</div>
+        <div onClick={copyCode} className="orangeButton" style = {{marginRight: '4%'}}>📋 Copy Code</div>
         :
-        <div onClick={copyCode} className="orangeButton">Copied!</div>}
-        <h3 style = {{color: 'var(--accentOrange'}}>Description</h3>
-        <p>{snip.description}</p>
+        <div onClick={copyCode} className="orangeButton" style = {{marginRight: '4%'}}>✔ Copied!</div>}
+        </div>
+        <div>
+            <h3 style = {{color: 'var(--accentOrange'}}>Description</h3>
+            <p>{snip.description}</p>
+        </div>
         {cat.user === user._id ? 
             <div style = {{display: 'flex', justifyContent: 'center', gap: '2px'}}>
                 {/* <Link to = {`/snippets-edit/${snip._id}`}><button>Edit</button></Link>

@@ -172,7 +172,7 @@ export default function Profile({ user }) {
 
       ) : (
         <div className="mainContent">
-          <h1>Hmmm…this is awkward. Can you <Link to="/signin" style={{color: 'var(--accentOrange',   textDecoration: 'underline'}}>sign up</Link> in or <Link to="/login" style={{color: 'var(--accentOrange',  textDecoration: 'underline'}}>log in</Link>, please?</h1>
+          <h1>Hmmm…this is awkward. Can you <Link to="/signup" style={{color: 'var(--accentOrange',   textDecoration: 'underline'}}>sign up</Link> in or <Link to="/signin" style={{color: 'var(--accentOrange',  textDecoration: 'underline'}}>log in</Link>, please?</h1>
 
         </div>
       )}

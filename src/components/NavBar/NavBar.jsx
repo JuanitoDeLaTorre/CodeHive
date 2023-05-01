@@ -11,6 +11,17 @@ const NavBar = ({ user, setUser, setSearchResults }) => {
   const [results, setResults] = useState([]);
 
   const navigate = useNavigate();
+
+
+  document.addEventListener('keydown', (event) => {
+
+    if(event.key === 'Enter' && query.length > 0) {
+      handleSearch(event)
+    }
+})
+
+
+
   async function handleSearch(event) {
     event.preventDefault();
     const response = await sendRequest(`/api/search/${query}`, "GET");
@@ -90,24 +101,31 @@ const NavBar = ({ user, setUser, setSearchResults }) => {
             {user ? (
               <>
                 <li style={{ color: "var(--accentOrange)" }}>/</li>
-                <Link to={`/profile/${user.username}`}>
-                  <li id="navElement">Your Bins</li>
-                </Link>
+                {/* <Link to={`/profile/${user.username}`}> */}
+                 <a href={`/profile/${user.username}`}><li id="navElement">Your Bins</li></a> 
+                {/* </Link> */}
                 <li style={{ color: "var(--accentOrange)", marginLeft: "0" }}>
                   /
                 </li>
-                <Link to="/addSnippetForm">
+                <Link to="/addSnippetForm/1">
                   <li id="navElement">Quick Add +</li>
                 </Link>
                 <li style={{ color: "var(--accentOrange)" }}>/</li>
-                <Link to="/">
-                  <li id="navElement" onClick={handleLogout}>
-                    Logout,{" "}
-                    <span style={{ color: "var(--accentOrange)" }}>
-                      {user.username}
-                    </span>
-                  </li>
-                </Link>
+                <div  style = {{display: 'flex', justifyContent: 'center', alignItems: 'center', gap : "10px"}}>
+                  <div id = "profilePicContainer" style = {{position: 'relative'}}>
+                    <Link to = "/profileEdit"><img src = {user.profilePic} id = "profilePicCard"/></Link>
+                    <div id = "tagHover">Edit Profile</div>
+                  </div>
+                  <Link to="/">
+                    <li id="navElement" onClick={handleLogout}>
+                      Logout,{" "}
+                      <span style={{ color: "var(--accentOrange)" }}>
+                        {user.username}
+                      </span>
+                    </li>
+                  </Link>
+
+                </div>
               </>
             ) : (
               <Link to="/signin">

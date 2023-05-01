@@ -1,7 +1,7 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 import './NewSnippetForm.css'
 import sendRequest from '../../utilities/send-request';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, useParams } from 'react-router-dom';
 import hljs from "highlight.js";
 
 
@@ -12,17 +12,33 @@ export default function NewSnippetForm({user}) {
     const [description, setDescription] = useState("");
   
     const [categories, setCategories, isLoading] = useState([]);
+    const [incomingCategory, setIncomingCategory] = useState({});
+
+    const {catID} = useParams();
 
     const navigate = useNavigate();
+    const textField = document.getElementById("body");
+
     let formattedText;
   
     useEffect(() => {
       fetchCategories()
+      fetchIncomingCat()
+        
     }, []);
+
+
+    async function fetchIncomingCat() {
+        if(catID === "1") return
+        const cat = await sendRequest(`/api/categories/fetchOne/${catID}`, 'GET')
+        setIncomingCategory(cat)
+        setCategory(cat._id)
+    }
 
     async function fetchCategories() {
         const cats = await sendRequest(`/api/categories/fetchCats/${user._id}`, 'GET')
         setCategories(cats)
+        setCategory(cats[0]._id)
     }
 
     const handleChange = (e) => {
@@ -44,22 +60,46 @@ export default function NewSnippetForm({user}) {
       navigate(`/profile/${user.username}`)
     }
 
-    function handleInput2(e) {
-        if (e.key === 'Tab' && !e.shiftKey) {
-            e.preventDefault();
-          } else if (e.key === 'Tab' && e.shiftKey) {
-            e.preventDefault();
-            var start = this.selectionStart;
-            var end = this.selectionEnd;
-            this.value = this.value.substring(0, start) + '     ' + this.value.substring(end);
-            this.selectionStart = this.selectionEnd = start + 5;
-          }
+
+
+    const textFieldRef = useRef(null);
+
+  useEffect(() => {
+    const textField = textFieldRef.current;
+
+    if (textField) {
+      textField.addEventListener("keydown", handleKeyDown);
+
+      return () => {
+        textField.removeEventListener("keydown", handleKeyDown);
+      };
     }
+  }, [textFieldRef]);
+
+  function handleKeyDown(event) {
+    if (event.key === "Tab") {
+      event.preventDefault();
+      const { selectionStart, selectionEnd } = event.target;
+      const valueBeforeCursor = event.target.value.slice(0, selectionStart);
+      const valueAfterCursor = event.target.value.slice(selectionEnd);
+      event.target.value = valueBeforeCursor + "\t" + valueAfterCursor;
+      event.target.selectionStart = selectionStart + 1;
+      event.target.selectionEnd = selectionStart + 1;
+    }
+  }
+
+
+        
   
     return (
         <div className="mainContent">
-            {isLoading ? <p>HELLO</p> : null}
+            {catID !== "1" ? 
+            
+            <h1>Add new snippet to<span style = {{color: 'var(--accentOrange)'}}> {incomingCategory.name}</span></h1> 
+            :
+            
             <h1>Add new <span style = {{color: 'var(--accentOrange)'}}>snippet</span></h1>
+            }
             {categories.length && !isLoading ?
             <div style={{ textAlign: "center" }}>
                 <form onSubmit={handleSubmit} className='newSnippetForm'>
@@ -74,27 +114,34 @@ export default function NewSnippetForm({user}) {
                 </div>
                 <div >
                     <label htmlFor="category">Category</label>
-                    <select
-                    id="category"
-                    value={category}
-                    onChange={(e) => setCategory(e.target.value)}
-                    >
-                    {categories.map((category) => (
-                        <option key={category._id} value={category._id}>
-                        {category.name}
-                        </option>
-                    ))}
-                    </select>
+                    {catID === "1" ?
+                    <>
+                        <select
+                        id="category"
+                        value={category}
+                        onChange={(e) => setCategory(e.target.value)}
+                        
+                        >
+                        {categories.map((category) => (
+                            <option key={category._id} value={category._id}>{category.name}</option>  
+                        ))}
+                        </select>
+                    </>
+                    :
+                    <p>{incomingCategory.name}</p>
+                    }
                 </div>
                 <div>
                     <label htmlFor="body">Code</label>
                     <textarea
                     id="body"
                     value={body}
+                    ref = {textFieldRef}
                     onChange={handleChange}
-                    onInput={handleInput2}
+                    // onInput={handleInput2}
                     autoFocus = 'autofocus'
                     tabIndex='-1'
+                    style = {{backgroundColor: 'var(--paynesGray)', color: 'white'}}
                     ></textarea>
                 </div>
                 <div>
@@ -118,48 +165,4 @@ export default function NewSnippetForm({user}) {
             }
         </div>
     );
-
-
-
-
-
-
-
-    // const [snippet, setSnippet] = useState("");
-
-    // let formattedText = ''
-
-    // const handlePaste = (e) => {
-    //   const text = e.target.textContent;
-    //     formattedText = text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-    //   setSnippet(formattedText);
-    // };
-    
-    // // const save = () => {
-    // //   const collection = db.collection("snippets");
-    // //   const doc = {
-    // //     snippet: snippet,
-    // //   };
-    // //   collection.insertOne(doc);
-    // // };
-    
-    // const handleChange = (e) => {
-    //   formattedText = e.target.value.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-    //   setSnippet(formattedText);
-    // };
-    
-    // return (
-    //   <div className = "mainContent">
-    //     <textarea
-    //       id="snippet"
-    //       value={snippet}
-    //       onChange={handleChange}
-    //     ></textarea>
-    //     {/* <p>{snippet}</p> */}
-    //     <pre style = {{textAlign: "left", margin: "0px"}}>
-    //         {snippet}
-    //     </pre>
-    //     {/* <button type="submit" onClick={save}>Save</button> */}
-    //   </div>
-    // );
 }

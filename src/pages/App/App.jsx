@@ -18,8 +18,10 @@ import ResultPage from "../ResultPage/ResultPage";
 import EditSnippetForm from "../EditSnippetForm/EditSnippetForm";
 import EditCategoryForm from "../EditCategoryForm/EditCategoryForm";
 import HomePage from "../HomePage/HomePage";
+import ProfileEditPage from "../ProfileEditPage/ProfileEditPage";
 
 import "highlight.js/styles/atom-one-dark.css";
+import Page404 from "../Page404/Page404";
 
 
 
@@ -62,6 +64,13 @@ function App() {
               <ProfilePage user={user}/>
             </>} 
             />  
+            {/* PROFILE EDIT ROUTE */}
+            <Route path="/profileEdit" element={
+            <>
+              <NavBar setSearchResults={setSearchResults} user={user} setUser={setUser}/>
+              <ProfileEditPage user={user} setUser = {setUser}/>
+            </>} 
+            />  
             {/* ADD CATEGORY FORM */}
             <Route path="/addCatForm" element={
             <>
@@ -70,7 +79,7 @@ function App() {
             </>} 
             />  
             {/* ADD SNIPPET FORM */}
-            <Route path="/addSnippetForm" element={
+            <Route path="/addSnippetForm/:catID" element={
             <>
               <NavBar setSearchResults={setSearchResults} user={user} setUser={setUser}/>
               <NewSnippetForm user={user}/>
@@ -114,6 +123,13 @@ function App() {
             <>
               <NavBar setSearchResults={setSearchResults} user={user} setUser={setUser}/>
               <ResultPage searchResults={searchResults} user={user}/>
+            </>} 
+            /> 
+            {/* 404 PAGE */}
+            <Route path="*" element={
+            <>
+              <NavBar setSearchResults={setSearchResults} user={user} setUser={setUser}/>
+              <Page404 />
             </>} 
             /> 
       </Routes>

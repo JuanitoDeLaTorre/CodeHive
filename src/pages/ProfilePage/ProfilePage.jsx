@@ -17,7 +17,7 @@ export default function Profile({ user }) {
   async function getUserProfile() {
     let returnUser;
     if (!profileName) return;
-    if(profileName === user.username) {
+    if (profileName === user.username) {
       returnUser = await sendRequest(
         `/api/users/fetchOneUser/${user.username}`,
         "GET"
@@ -57,7 +57,7 @@ export default function Profile({ user }) {
   }
 
   useEffect(() => {
-    setUserProfile([])
+    setUserProfile([]);
     getUserProfile();
     setAllSnips([]);
     setAllSnipsIndividual([]);
@@ -72,97 +72,110 @@ export default function Profile({ user }) {
   }, [allSnips]);
 
   return (
-    <div className="mainContent">
-      {profileName === user.username ? (
-        <h1 style={{ fontSize: "3em" }}>
-          Your <span style={{ color: "var(--accentOrange" }}>Bins</span>
-        </h1>
-      ) : (
-        <h1 style={{ fontSize: "3em" }}>
-          {profileName}'s{" "}
-          <span style={{ color: "var(--accentOrange" }}>Bins</span>
-        </h1>
-      )}
+    <>
+      {user ? (
+        <div className="mainContent">
+          {profileName === user.username ? (
+            <h1 style={{ fontSize: "3em" }}>
+              Your <span style={{ color: "var(--accentOrange" }}>Bins</span>
+            </h1>
+          ) : (
+            <h1 style={{ fontSize: "3em" }}>
+              {profileName}'s{" "}
+              <span style={{ color: "var(--accentOrange" }}>Bins</span>
+            </h1>
+          )}
 
-      {/* /* <Link to "/addCatForm"><button>ADD BIN!</button></Link> */}
-      {profileName === user.username ? (
-        <Link to="/addCatForm">
-          <div className="orangeButton">ADD BIN</div>
-        </Link>
-      ) : null}
+          {/* /* <Link to "/addCatForm"><button>ADD BIN!</button></Link> */}
+          {profileName === user.username ? (
+            <Link to="/addCatForm">
+              <div className="orangeButton">ADD BIN</div>
+            </Link>
+          ) : null}
 
-      {profileName === user.username ? (
-        <div
-          id="profileCard"
-          style={{ position: "absolute", top: "80px", left: "155px" }}
-        >
-          <div style={{ display: "flex", justifyContent: "left", gap: "5%" }}>
-            <img id="profilePicCard" src={user.profilePic} alt="" />
-            <h4
+          {profileName === user.username ? (
+            <div
+              id="profileCard"
+              style={{ position: "absolute", top: "80px", left: "155px" }}
+            >
+              <div
+                style={{ display: "flex", justifyContent: "left", gap: "5%" }}
+              >
+                <img id="profilePicCard" src={user.profilePic} alt="" />
+                <h4
+                  style={{
+                    fontWeight: "200",
+                    textAlign: "left",
+                    marginTop: "5px",
+                    marginBottom: "5px",
+                  }}
+                >
+                  {user.username}
+                </h4>
+              </div>
+              <p
+                style={{
+                  fontWeight: "200",
+                  textAlign: "left",
+                  color: "rgb(201, 201, 201)",
+                  fontSize: "15px",
+                  marginTop: "10px",
+                }}
+              >
+                User since: {new Date(user.createdAt).toLocaleDateString()}
+              </p>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  marginTop: "20px",
+                  marginBottom: "20px",
+                  alignItems: "center",
+                  fontSize: "0.9em",
+                }}
+              >
+                <p> Total snippets: {allSnipsIndividual.length}</p>
+              </div>
+            </div>
+          ) : null}
+
+          <hr style={{ marginTop: "20px" }} />
+          {isLoading && <img src={ripple} alt="" />}
+          {allSnips.length === 0 &&
+          profileName === user.username &&
+          !isLoading ? (
+            <p
               style={{
-                fontWeight: "200",
-                textAlign: "left",
-                marginTop: "5px",
-                marginBottom: "5px",
+                textAlign: "center",
+                color: "var(--accentOrange)",
+                fontSize: "25px",
               }}
             >
-              {user.username}
-            </h4>
-          </div>
-          <p
-            style={{
-              fontWeight: "200",
-              textAlign: "left",
-              color: "rgb(201, 201, 201)",
-              fontSize: "15px",
-              marginTop: "10px",
-            }}
-          >
-            User since: {new Date(user.createdAt).toLocaleDateString()}
-          </p>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              marginTop: "20px",
-              marginBottom: "20px",
-              alignItems: "center",
-              fontSize: "0.9em",
-            }}
-          >
-            <p> Total snippets: {allSnipsIndividual.length}</p>
-          </div>
+              Whoops! It looks like this hive is a little empty. Click on the
+              'Add Bin' button to give these bees a new home 🐝🏠🌸
+            </p>
+          ) : (
+            <div className="categoryContainer">
+              {allSnips.map((cat) => {
+                return (
+                  <CategoryCard
+                    key={cat._id}
+                    profileName={profileName}
+                    user={user}
+                    cat={cat}
+                  />
+                );
+              })}
+            </div>
+          )}
         </div>
-      ) : null}
 
-
-      <hr style={{ marginTop: "20px" }} />
-      {isLoading && <img src={ripple} alt="" />}
-      {allSnips.length === 0 && profileName === user.username && !isLoading ? (
-        <p
-          style={{
-            textAlign: "center",
-            color: "var(--accentOrange)",
-            fontSize: "25px",
-          }}
-        >
-          Whoops! It looks like this hive is a little empty. Click on the
-          'Add Bin' button to give these bees a new home 🐝🏠🌸
-        </p>
       ) : (
-        <div className="categoryContainer">
-          {allSnips.map((cat) => {
-            return (
-              <CategoryCard
-                key={cat._id}
-                profileName={profileName}
-                user={user}
-                cat={cat}
-              />
-            );
-          })}
+        <div className="mainContent">
+          <h1>Hmmm…this is awkward. Can you <Link to="/signin" style={{color: 'var(--accentOrange',   textDecoration: 'underline'}}>sign up</Link> in or <Link to="/login" style={{color: 'var(--accentOrange',  textDecoration: 'underline'}}>log in</Link>, please?</h1>
+
         </div>
       )}
-    </div>
+    </>
   );
 }

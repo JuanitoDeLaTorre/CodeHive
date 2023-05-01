@@ -59,10 +59,10 @@ export default function SignUpPage({setUser}) {
 
         try {
           
-            if(error !== '') {
+            if(error === '') {
                 console.log("trying!")
-                // const user = await usersService.signUp(credentials);
-                // setUser(user);
+                const user = await usersService.signUp(credentials);
+                setUser(user);
       
                 navigate('/')
             }
@@ -85,7 +85,7 @@ export default function SignUpPage({setUser}) {
                 <h1 style = {{fontWeight: "600", marginBottom: "0"}}>Join the <span style = {{color: "var(--accentOrange"}}>Hive</span>!</h1>
                 <h4 style = {{fontWeight: "200", marginTop: "15px",color: "var(--paynes"}}>Let's start with some details:</h4>
                 
-                <form id = "loginForm" autoComplete="off" onSubmit={handleSubmit} >
+                <form id = "loginForm" autoComplete="off" >
                     <div>
                         <label htmlFor="username" style = {{fontSize: "0.7em"}}>username</label>
                         <input
@@ -144,7 +144,7 @@ export default function SignUpPage({setUser}) {
                     <p style = {{color: "rgb(241, 80, 80)"}}>{error}</p>
                    
                 
-                    <Link to = "/" ><div className = "orangeButton" onClick={handleSubmit} style = {{width: "100%"}}>Sign Up</div></Link>
+                    <div className = "orangeButton" onClick={handleSubmit} style = {{width: "100%"}}>Sign Up</div>
                 </form>
                 <Link to = "/" ><div className = "orangeButton" style = {{ width: "100%"}}>Back to home</div></Link>
             </div>
